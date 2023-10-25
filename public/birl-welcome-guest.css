@@ -1,0 +1,174 @@
+.birl-guest-welcome-container{
+    /* height: 100vh; */
+    background-repeat: no-repeat;
+    background-position-x: left;
+    background-size: auto 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.birl-guest-welcome-content{
+    width: 50%;
+    /* min-width: 768px; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* align-items:center; */
+    margin-right: 20px;
+    min-width: 422px;
+}
+
+.birl-guest-welcome-container > div > h1{
+    margin-top: unset;
+    font-family: "Inter", sans-serif;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.birl-guest-welcome-content p{
+    max-width: 75ch;
+    font-family: "Inter", sans-serif;
+    line-height: normal;
+}
+
+.mobile-image{
+    display: none;
+}
+
+.birl-button{
+    background:white;
+    outline: none;
+    border: 1px solid #00000033;
+    border-radius: 12px;
+    padding: 22px 45px;
+    margin-bottom: 15px;
+    cursor: pointer;
+}
+
+.desktop-image{
+    width: calc(78% - 422px);
+    object-fit: cover;
+    margin-right: 60px;
+    height: Calc(100vh - 122px);
+}
+
+.birl-button h3{
+    font-family: "Inter", sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    margin-bottom: 10px;
+    margin: 0;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-align: left;
+}
+
+.welcome-description{
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    color: #667085;
+    max-width: 55ch;
+}
+
+.birl-button p{
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    margin: 0;
+    color: #667085;
+    margin-top: 10px;
+    max-width: 55ch;
+    text-align: left;
+}
+
+.birl-button div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.arrow-welcome{
+    margin-left: 13px;
+}
+
+.birl-guest-welcome-buttons{
+    display: flex;
+    flex-direction: column;
+}
+
+.birl-guest-welcome-buttons button{
+    max-width: 642px;
+}
+
+/* max width of 768px */
+
+@media screen and (max-width: 1300px) {
+    .desktop-image {
+        width: Calc(100% - 450px);
+        object-fit: cover;
+        max-width: 500px;
+    }
+}
+
+@media screen and (max-width: 854px) {
+    .birl-guest-welcome-container{
+        background-position-x: center;
+        background-size: 100% auto;
+        justify-content: center;
+    }
+
+    .birl-guest-welcome-container > div > h1{
+        font-size: 28px;
+        font-style: normal;
+        font-weight: 600;
+    }
+
+    .birl-guest-welcome-content{
+        margin-right: 0;
+    }
+
+    .birl-guest-welcome-container{
+        padding: 0 20px;
+    }
+
+    .birl-guest-welcome-content p{
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+    }
+
+    .birl-guest-welcome-container{
+        height: unset;
+        background-repeat: no-repeat;
+        background-position-x: left;
+        background-size: auto 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+    }
+    .birl-guest-welcome-content{
+        width: 100%;
+        min-width: 0;
+    }
+
+    .mobile-image{
+        display:block;
+        margin-bottom: 30px;
+        max-width: 100%;
+        object-fit: cover;
+    }
+
+    .birl-button{
+        margin-bottom: 22px;
+        text-align: left;
+    }
+
+    .desktop-image{
+        display: none;
+    }
+    
+}

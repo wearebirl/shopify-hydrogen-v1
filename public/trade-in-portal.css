@@ -1,0 +1,1254 @@
+.TradeIn-Portal-Container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 37px 103px;
+    border: 1px solid #00000033;
+    border-radius: 12px;
+}
+
+.TradeIn-Portal-Container h1{
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    font-size: 24px;
+    margin:0 auto;
+    margin-top:30px;
+    margin-bottom: 40px;
+    max-width: 27ch;
+    text-align: center;
+}
+
+.contact-entry-container{
+    max-width: 1280px;
+    margin: 0 auto;
+    margin-top: 60px;
+}
+
+.categories{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.category{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 13.5px;
+    margin-bottom: 39px;
+}
+
+.trade-price{
+    background-color: #96D610;
+    color:white;
+    font-size: 14px;
+    font-weight: 700;
+    font-family: "Inter", sans-serif;
+    margin:unset;
+    padding: 4px 27px;
+    text-align: center;
+    border-radius: 0px 0px 5px 5px;
+    margin-top: -3px;
+}
+
+.category img{
+    max-width: 135.778px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.category-info h3{
+    font-size: 14px;
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+    max-width: 14ch;
+    line-height: 24px;
+    text-align: center;
+    margin:4px auto;
+}
+
+.btn-confirm{
+    background:black;
+    color:white;
+    font-family: 'Inter', sans-serif;
+    max-width: 438px;
+    font-size: 16px;
+    font-weight: 600;
+    width: 100%;
+    outline: none;
+    border: none;
+    margin: 0 auto;
+    padding: 10px;
+    border-radius: 8px; 
+    cursor: pointer;
+}
+
+.category button{
+    background:none;
+    outline: none;
+    border: none;
+    padding: 0;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    cursor: pointer;
+}
+
+
+.confirm-container{
+    width: 438px;
+    margin: 0 auto;
+    display: none;
+}
+
+.portal-title{
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    font-size: 24px;
+    margin: 0 auto;
+    margin-top: 30px;
+    margin-bottom: 40px;
+    max-width: 27ch;
+    text-align: center;
+}
+
+.item-condition-container{
+    max-width: 1520px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.item-condition-bold{
+    font-family: "Inter", sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    max-width: 55ch;
+    color:black;
+}
+
+.item-condition-left{
+    margin-right: 30px;
+}
+
+.item-conditions{
+    display: flex;
+    flex-direction: column;
+}
+
+.item-conditions button{
+    background: none;
+    outline: none;
+    border: 1px solid #00000033;
+    border-radius: 8px;
+    text-align: left;
+    padding:16px; 
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+}
+
+.item-conditions button:hover{
+    border: 1px solid #2EA141;
+    background: #96D6100F;
+}
+
+.item-conditions button:hover > div > input[type="checkbox"]{
+    border: 2px solid #2EA141;
+}
+
+
+.item-conditions button label{
+    font-family: "Inter", sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    color:black;
+    margin: 0;
+    padding: 0;
+}
+
+.item-conditions button p{
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    color: #667085;
+    margin: 0;
+    padding: 0;
+}
+
+.item-conditions button:first-child{
+    margin-top: 30px;
+}
+
+.item-conditions button:last-child{
+    /* display: none; */
+    border-radius: 8px;
+    background: var(--black, #000);
+    box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
+    outline: none;
+    border: none;
+    font-family: "Inter", sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 24px; /* 150% */
+    color: var(--white, #FFF);
+    width: max-content;
+    padding: 8px 20px;
+    cursor: pointer;
+}
+
+.item-conditions button:last-child:disabled{
+    opacity: 0.2;
+    cursor: not-allowed;
+}
+
+.item-conditions button{
+    margin-top: 20px;
+}
+
+.condition-details {
+    margin-left: 25px;
+    font-family: "Inter", sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 22px; /* 157.143% */
+}
+
+.img-text img{
+    max-width: 185.07px;
+    max-height: 199px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.img-text{
+    display: flex;
+    flex-direction: row; 
+}
+
+.item-review-block h1{
+    font-family: "Inter", sans-serif;
+    font-size: 26px;
+    font-weight: 600;
+    color: black;
+    margin-top: 0px;
+    margin-bottom: 20px;
+}
+
+.img-text h4{
+    font-family: "Inter", sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: black;
+    margin-top: 0px;
+    margin-bottom: unset;
+    padding: 0;
+    text-transform: uppercase;
+}
+
+.capture-arrow{
+    width: 11px !important;
+    height: 8px !important;
+}
+
+.img-text p{
+    font-family: "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: #667085;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.img-text-details{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-left: 39px;
+}
+
+.details-right{
+    margin-left: 0px !important;
+    margin-right: 48px;
+}
+
+.details-right > div > h1{
+    margin: 0;
+    padding: 0;
+}
+
+.title-seperator{
+    margin-top: 30px !important;
+}
+
+.details-right div:first-child{
+   margin-bottom: 20px !important;
+}
+
+.img-link{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-top: 12px;
+}
+
+.img-link img{
+    margin-top: 30px !important;
+    margin: 0 auto;
+}
+
+.img-link a{
+    font-size: 14px;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    color:black;
+    font-family: "Inter", sans-serif;
+    margin-top: 12px;
+}
+
+.item-review-block {
+    width: max-content;
+    padding: 40px;
+    border-radius: 12px;
+    border: 1px solid #00000033;
+}
+
+.item-condition-split{
+    display: flex;
+    justify-content: center;
+}
+
+
+@media screen and (max-width:501px) {
+    .img-link a{
+     display: none;
+    }
+
+    .img-link img{
+        max-width: 121px;
+        max-height: 80px;
+        object-fit: scale-down !important;
+    }
+
+    .product-image-review{
+        max-width: 87.42px !important;
+        max-height: 94px !important;
+    }
+
+    .first-img-text > .img-text-details > div{
+        display: flex;
+        align-items: center;
+
+    }
+
+    .first-img-text > .img-text-details > div > h4{
+        margin-right: 20px;
+    }
+
+    .item-credit-amount {
+        margin-bottom: 10px !important;
+    }
+
+    .img-link{
+        justify-content: flex-end !important;
+    }
+}
+
+.trade-confirmation-container{
+    padding: 40px 20px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.confirmation-buttons{
+    margin: 0 auto;
+    max-width: max-content;
+}
+
+.confirmation-buttons{
+    display: flex;
+    flex-direction: row;
+}
+
+.confirmation-buttons .confirmation-button{
+    font-family: "Inter", sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 24px;
+    min-width: 200px;
+    max-width: 216px;
+    outline: none;
+    /* width: 100%; */
+    text-align: center;
+    padding: 8px 20px !important;
+    border-radius: 8px;
+    text-decoration: none;
+}
+
+.confirmation-buttons .confirmation-button:hover{
+    border: unset;
+
+}
+
+.trade-confirmation-container .description{
+    max-width: 100ch;
+    margin: 20px auto;
+    margin-bottom: 30px;
+}
+
+.confirmation-buttons .confirmation-button:first-child{
+    color: #344054;
+    border: 1px solid #D0D5DD;
+    background: white;
+    box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
+    margin-right: 20px;
+}
+
+.confirmation-buttons .confirmation-button:last-child{
+    background: #000000;
+    color:white;
+    border:none !important;
+    box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
+    
+}
+
+.confirm-title{
+    font-family: "Inter", sans-serif;
+    font-size: 35px;
+    font-weight: 600;
+    color:black;
+}
+
+.confirmation-steps-container{
+    max-width: 1216px;
+    margin: 0 auto;
+}
+
+.confirmation-steps{
+    border-radius: 12px;
+    border: 1px solid var(--container-stroke, rgba(0, 0, 0, 0.20));
+    background: linear-gradient(0deg, #F8F8F8 0%, rgba(239, 239, 239, 0.00) 100%);
+    padding: 33px;
+}
+
+.confirmation-steps-container h3{
+    font-family: "Inter", sans-serif;
+    font-size: 26px;
+    font-weight: 600;
+}
+
+.confirmation-steps-container > .confirmation-steps{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.confirmation-title{
+    font-family: "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color:black;
+}
+
+.confirmation-description{
+    color: #667085;
+    font-family: "Inter", sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    max-width: 45ch;
+    margin: 2px auto;
+
+}
+
+.confirmation-information{
+    background: #DFFBC9;
+    border-radius: 12px;
+    border: 1px solid rgba(0, 0, 0, 0.20);
+    padding: 31px;
+    display: flex;
+    text-align: left;
+    margin-top: 40px;
+    justify-content: space-between;
+    max-width: 1216px;
+    margin: 40px auto;
+    margin-top: 24px;
+}
+
+.confirmation-information h1{
+    font-family: "Inter", sans-serif;
+    font-size: 26px;
+    font-weight: 600;
+    color:#101828;
+    margin: 0;
+    padding: 0;
+}
+
+.dropoff-information{
+    text-align: left;
+    max-width: 1216px;
+    margin: 40px auto;
+}
+
+.confirmation-information p{
+    color: #667085;
+    font-size: 14px;
+    font-weight: 400;
+    font-family: "Inter", sans-serif;
+    max-width: 73ch;
+}
+
+.dropoff-information h1{
+    color: #101828;
+    font-family: "Inter", sans-serif;
+    font-size: 35px;
+    font-weight: 600;
+    letter-spacing: -0.7px;
+    text-align: left;
+
+}
+
+.dropoff-information a{
+    text-decoration: underline;
+    margin-top: 20px;
+    color: black;
+    text-underline-offset: 4px;
+    font-size: 16px;
+    text-align: left;
+}
+
+.trade-in-value-container, .contact-details-container{
+    max-width:1280px;
+    margin: 0 auto;
+}
+
+.trade-in-value-description{
+    font-family: "Inter", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: #000;
+    margin: 0;
+    padding: 0;
+    max-width: 70ch;
+}
+
+.trade-in-cards{
+    display: flex;
+    flex-direction: row;
+    margin-top: 65px;
+}
+
+.upsell-card{
+    background: var(--linear-dark-grey, linear-gradient(45deg, #101828 0%, #475467 100%)) !important;
+}
+
+.upsell-card p{
+    color: white;
+}
+
+.upsell-card .standard-card-title{
+    color: white !important;
+}
+
+.upsell-card svg path{
+    stroke: white;
+}
+
+.standard-card-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.standard-card-header .standard-card-title{
+    font-family: "Inter", sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: #000;
+    margin: 0;
+    padding: 0;
+}
+
+.standard-card{
+    background: #96D610;
+    padding: 15px;
+    border-radius: 20px;
+    max-width: 234px;
+    max-height: 140px;
+    width: 234px;
+    height: 140px;
+    margin-right: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.2s ease-in-out;
+}
+
+
+.standard-shop-name{
+    font-family: "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: #000;
+    margin: 0;
+    padding: 0;
+}
+
+.standard-shop-info{
+    font-family: "Inter", sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    color: #000;
+    margin: 0;
+    padding: 0;
+}
+
+.trade-in-selections{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-top: 55px;
+}
+
+.trade-in-selection-body p{
+    margin: 0;
+    padding: 0;
+    font-family: "Inter", sans-serif;
+    font-size: 14px;
+    color: #667085;
+    margin-left: 25px;
+}
+
+.trade-in-selection{
+    padding: 16px;
+    border-radius: 8px;
+    border: 1px solid var(--gray-200, #EAECF0);
+    background: var(--white, #FFF);
+    margin-bottom: 12px;
+    background: none;
+    outline: none;
+    text-align: left;
+    cursor: pointer;
+}
+
+.accept-credit{
+    border: none;
+    background:black;
+    color: white;
+    font-family: "Inter", sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 24px; /* 150% */
+    padding: 8px 20px;
+    max-width: 176px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+.accept-credit:disabled{
+    opacity: 0.2;
+    cursor: not-allowed;
+}
+
+.trade-in-selection-header label{
+    font-family: "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: #000;
+    margin: 0;
+    padding: 0;
+}
+
+.trade-in-selection:hover{
+    border: 1px solid #2EA141;
+}
+
+.trade-in-value-container, .contact-details-container{
+    display: flex;
+    padding: 20px;
+}
+
+.trade-in-value-left-conatiner{
+    margin-right: 29px;
+}
+
+.upsell-card{
+    margin-right: 0 !important;
+}
+
+.contact-details-container{
+    justify-content: space-between;
+}
+
+.contact-details, .contact-confirmation{
+    padding: 40px;
+    border: 1px solid rgba(0, 0, 0, 0.20);
+    background: #FFF;
+    border-radius: 12px;
+    width: Clamp(313px,100%,628px);
+
+}
+
+.contact-details-left-conatiner{
+    margin-right: 20px;
+}
+
+.contact-confirmation{
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.contact-confirmation p{
+    max-width: 45ch;
+    color: var(--text-light-grey, #667085);
+    font-family: "Inter", sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px; /* 171.429% */
+}
+
+.contact-confirmation img{
+    max-width: 100px;
+    max-height: 100px;
+}
+
+.contact-confirmation h1{
+    color: var(--gray-900, #101828);
+    font-family: "Inter", sans-serif;
+    font-size: 26px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 30px; /* 115.385% */
+    margin: 0;
+}
+
+.contact-details-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.contact-details-information{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.contact-details-information p{
+    color: var(--gray-500, #667085);
+    /* Text md/Regular */
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px; /* 150% */
+    margin: 0;
+    padding: 0;
+}
+
+.contact-details-header h1{
+    color: var(--gray-900, #101828);
+    font-family: "Inter", sans-serif;
+    font-size: 26px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 30px; /* 115.385% */
+    margin: 0;
+    margin-bottom: 20px;
+}
+
+.contact-details-header button{
+    color: var(--black, #000);
+    font-family: "Inter", sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 24px; /* 150% */
+    text-decoration-line: underline;
+    text-underline-offset: 4px;
+    outline: none;
+    background: none;
+    border: none;
+}
+
+.confirm-trade-in{
+    border: none;
+    background:black;
+    color: white;
+    font-family: "Inter", sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 24px; /* 150% */
+    padding: 8px 20px;
+    max-width: 176px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 28px;
+}
+
+.confirm-trade-in:disabled{
+    opacity: 0.2;
+    cursor: not-allowed;
+}
+
+@media screen and (max-width:1150px) {
+    .confirmation-steps{
+        flex-wrap: wrap;
+    }
+
+    .confirmation-step{
+        margin:10px auto;
+    }
+
+    .trade-in-cards{
+        flex-direction: column;
+    }
+
+    .upsell-card{
+        margin-top: 20px;
+    }
+
+    .contact-confirmation{
+        flex-direction: column;
+        justify-items: flex-start;
+        align-items: flex-start;
+    }
+
+    .contact-confirmation img:first-child{
+        display: block !important;
+        margin-bottom: 20px;
+    }
+    .contact-confirmation img:last-child{
+        display: none !important;
+    }
+    
+    .img-link img{
+      display: none !important;
+    }
+
+    .img-link{
+        justify-content: flex-end;
+    }
+
+}
+
+.Trade-In-Banner-Container{
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+.Trade-In-Banner-Container{
+    padding: 20px 0 !important;
+}
+
+.Trade-In-Banner-Container{
+    display: flex;
+    padding: 20px;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+input[type="checkbox"] {
+    display: none;  /* Hide the default checkbox */
+}
+
+/* Styles for custom checkbox */
+input[type="checkbox"] + label {
+    position: relative;
+    padding-left: 25px;  /* Space for custom checkbox before the label text */
+    cursor: pointer;
+}
+
+/* Custom checkbox appearance */
+input[type="checkbox"] + label:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 16px;
+    height: 16px;
+    border: 2px solid #2EA141;
+    background-color: #ffffff;
+    border-radius: 4px;
+}
+
+/* Checkmark for custom checkbox */
+input[type="checkbox"]:checked + label:after {
+    content: '\2713';  /* Unicode checkmark character */
+    position: absolute;
+    left: 3.5px;  /* Adjust based on desired position of checkmark */
+    top: 49.5%;
+    transform: translateY(-50%);
+    color: #2EA141;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+/* Background color for label when checkbox is checked */
+input[type="checkbox"]:checked + label {
+    /* background-color: #f1f4e9; */
+}
+
+
+
+.Trade-In-Back-Container{
+    display: flex;
+    align-items: center;
+    color:black;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+}
+.Trade-In-Back-Container svg{
+    margin-right: 10px;
+    fill: black;
+    margin-top: 4px;
+}
+.Trade-In{
+    text-decoration: none;
+    height: max-content;
+    outline: none;
+    border:none;
+    background:none;
+    cursor: pointer;
+}
+
+.contact-confirmation img:first-child{
+    display: none;
+}
+
+.contact-entry-container{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+
+.inline-inputs input, .full-input input, .inline-inputs select, .full-input select{
+    background: none;
+    outline: none;
+    border: none;
+
+    border-radius: 8px;
+    border: 1px solid var(--gray-300, #D0D5DD);
+    background: var(--white, #FFF);
+    /* Shadow/xs */
+    box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
+    font-family: "Inter", sans-serif;
+    padding: 10px 14px;
+    color: #667085;
+    position: relative;
+}
+
+.inline-inputs input:focus, .full-input input:focus, .inline-inputs select:focus, .full-input select:focus{
+    border: 1px solid var(--birl-green, #96D610);
+    background: var(--white, #FFF);
+    box-shadow: 0px 0px 0px 4px rgba(150, 214, 16, 0.06), 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
+}
+
+.inline-inputs input:not(:placeholder-shown) , .full-input input:not(:placeholder-shown){
+    border: 1px solid #475467;
+    background: var(--white, #FFF);
+    /* Shadow/xs */
+    box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
+}
+
+/* note valid */
+
+.inline-inputs input:not(:valid), .full-input input:not(:valid) {
+    border-radius: 8px !important;
+    border: 1px solid var(--error-300, #FDA29B) !important;
+    background: var(--white, #FFF) !important;
+    box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05) !important;
+}
+
+
+.inline-inputs svg , .full-input svg{
+    display: none;
+}
+
+.inline-inputs input:not(:valid) + svg , .full-input input:not(:valid) + svg{
+    display: block !important;
+    position: absolute;
+    top: 55%;
+    right: 10px;
+}
+
+.inline-inputs p, .full-input p{
+    display: none;
+}
+
+.inline-inputs input:not(:valid) + svg , .full-input input:not(:valid) + svg{
+    display: block !important;
+    position: absolute;
+    top: 55%;
+    right: 10px;
+}
+
+.inline-inputs input:not(:valid) + svg + p , .full-input input:not(:valid) + svg + p{
+    position: absolute;
+    display: block;
+    padding:0;
+    margin: 0;
+    bottom: -30px;
+
+    color: var(--error-500, #F04438);
+    /* Text sm/Regular */
+    font-family: "Inter", sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px; /* 142.857% */
+}
+
+.contact-entry-container label{
+    color: var(--gray-700, #344054);
+    /* Text sm/Medium */
+    font-family: "Inter", sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px; /* 142.857% */
+    margin-bottom: 6px;
+}
+select[editable] > button { stroke: #f00 !important; }
+.inline-inputs{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.inline-inputs div{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    position: relative;
+}
+
+.inline-inputs div:first-child{
+    margin-right: 18px;
+}
+
+.inline-inputs select{
+    width: 100%;
+}
+
+.full-input{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    position: relative;
+}
+
+.contact-entry-left-container, .contact-entry-right-container{
+    width: 100%;
+}
+
+.contact-entry-left-container{
+    margin-right: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+[for="contact-entry-phone"] + span{
+    z-index: 10;
+    padding: 11px;
+    position: absolute;
+    top: 27px;
+    left: 1px;
+    color: #667085;
+    font-family: "Inter", sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    background-color: #fff;
+    margin-right: 12px;
+    border-right: 1px solid #D0D5DD;
+    border-radius: 8px;
+    border-bottom-right-radius: 0px;
+    border-top-right-radius: 0px;
+    /* max-height: 36px; */
+    line-height: 100%;
+}
+
+#contact-entry-phone{
+    text-indent: 70px;
+}
+
+p.item-credit-amount {
+    min-width: 170px;
+}
+
+[for="return"]{
+    max-width: 50ch;
+    display: block;
+}
+
+[value="Return Agreement"] + label:before, [value="Return Agreement"] + label:after {
+    top: 16px !important;
+}
+
+.contact-entry-left-container button{
+    border-radius: 8px;
+    background: var(--black, #000);
+    /* Shadow/xs */
+    box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
+    color:white;
+    padding: 9px 20px;
+    max-width: 176px;
+    width: 100%;
+    cursor: pointer;
+    font-family: "Inter", sans-serif;
+}
+
+.contact-entry-left-container button:disabled{
+    opacity: 0.2;
+    cursor: not-allowed;
+}
+
+@media screen and (max-width:1100px){
+    .inline-inputs, .full-input{
+        flex-direction: column;
+        margin-top: 20px;
+    }
+
+    .inline-inputs div:last-child{
+        margin-top: 20px;
+    }
+
+    .contact-entry-left-container .inline-inputs:first-child{
+        margin-top: 0;
+    }
+
+    .contact-entry-left-container .checkboxes{
+        margin: 20px 0 ;
+    }
+
+    .checkboxes div{
+        margin-top: 10px;
+    }
+    
+}
+
+@media screen and (max-width:1034px){
+    [value="Terms of Service"] + label{
+        display: block;
+    }
+    [value="Terms of Service"] + label:before, [value="Terms of Service"] + label:after {
+        top: 16px !important;
+    }
+}
+
+@media screen and (max-width:986px) {
+
+    .trade-in-cards{
+        flex-direction: row;
+    }
+
+    .trade-in-value-left-conatiner{
+        margin-right: 0;
+    }
+
+    .upsell-card{
+        margin-top: 0px;
+    }
+
+    .trade-in-value-container, .contact-details-container{
+        flex-direction: column;
+    }
+
+    .item-condition-split{
+        flex-direction: column;
+    }
+
+    .item-condition-right{
+        margin-top: 40px;
+    }
+
+    .item-review-block{
+        border: none;
+        padding: 0;
+    }
+    .TradeIn-Portal-Container{
+        padding: 0;
+        border: none;
+        
+    }
+
+    .confirmation-information{
+        display: none;
+    }
+}
+
+@media screen and (max-width: 834px){
+    .img-link img{
+        display: block !important;
+      }
+  
+      .img-link{
+          justify-content: space-evenly !important;
+      }
+
+      .contact-entry-container{
+        flex-direction: column;
+      }
+
+      .contact-entry-left-container button{
+        margin-bottom: 20px;
+      }
+
+}
+
+@media screen and (max-width: 535px){
+    .confirm-container{
+        position: sticky;
+        width: 100%;
+        /* display: flex; */
+        justify-content: center;
+        bottom: 0px;
+        padding: 20px 0;
+        border-top: 1px solid #e7e7e7;
+        background: white;
+    }
+
+    .btn-confirm{
+        width: 100%;
+        max-width: calc(100% - 40px);
+    }
+
+    .trade-confirmation-container .description{
+        text-align: left;    
+    }
+
+    .confirmation-buttons{
+        flex-direction: column;
+    }
+
+    .confirmation-buttons .confirmation-button{
+        width:100%;
+        max-width: 100%;
+    }
+
+    .confirmation-buttons .confirmation-button:first-child{
+        margin: unset;
+        margin-bottom: 8px;
+    }
+
+    .confirmation-buttons{
+        max-width: unset;
+    }
+}

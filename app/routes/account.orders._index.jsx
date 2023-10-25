@@ -108,6 +108,7 @@ function OrderItem({order}) {
         <p>{order.fulfillmentStatus}</p>
         <Money data={order.currentTotalPrice} />
         <Link to={`/account/orders/${btoa(order.id)}`}>View Order →</Link>
+
       </fieldset>
       <br />
     </>
