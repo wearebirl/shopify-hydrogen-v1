@@ -12,7 +12,7 @@ export async function loader({request, context}) {
   const isLoggedIn = !!customerAccessToken?.accessToken;
   const isAccountHome = pathname === '/account' || pathname === '/account/';
   const isPrivateRoute =
-    /^\/account\/(orders|orders\/.*|profile|addresses|\/birl\/(orders\/.*)\/.*)$/.test(
+    /^\/account\/(orders|orders\/.*|profile|addresses\/.*)$/.test(
       pathname,
     );
 
@@ -129,7 +129,7 @@ function AccountMenu() {
         &nbsp; Addresses &nbsp;
       </NavLink>
       &nbsp;|&nbsp;
-      <NavLink to={"/account/birl"} style={isActiveStyle}>
+      <NavLink to={"/birl"} style={isActiveStyle}>
         &nbsp; Birl &nbsp;
         </NavLink>
       &nbsp;|&nbsp;

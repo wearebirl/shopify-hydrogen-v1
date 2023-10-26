@@ -1,12 +1,29 @@
 import {Link} from "@remix-run/react";
 
+
+import React from 'react';
+import InstantCredit from '../assets/Instant Credit.png';
+import CarbonCapture from '../assets/Carbon Capture.png';
+import FreeShipping from '../assets/Free Shipping.png';
+import GuaranteedValue from '../assets/Guaranteed Value.png';
+import Steps from '../assets/Steps.png';
+
+import BirlLogo from '../assets/birl-logo.png';
+
+
+
 export function AnnouncementBar() {
+
+    const openDropdown = () => {
+        document.querySelector('.birl-announcement-dropdown').classList.add('open');
+    }
+}
 
     return (
         <>
         <div className="birl-announcement-container">
             <button onClick="openDropdown()">
-                <img loading="eager" src="{{ 'birl-logo.png' | asset_img_url: '56x19' }}" width="56" height="19" alt="Birl Logo"/>
+                <img loading="eager" src={BirlLogo} width="56" height="19" alt="Birl Logo"/>
                     <span>Trade-in your pre-owned dawn items for an instant credit to spend today</span>
             </button>
         </div>
@@ -37,15 +54,15 @@ export function AnnouncementBar() {
 
                     <div className="dropdown-split__right">
                         <div className="icons">
-                            <img  loading="eager" src="{{ 'Instant Credit.png' | asset_url }}" width="113" height="90" />
-                            <img  loading="eager" src="{{ 'Carbon Capture.png' | asset_url }}"  width="113" height="90" />
-                            <img  loading="eager" src="{{ 'Free Shipping.png' | asset_url }}"  width="113" height="90" />
-                            <img  loading="eager" src="{{ 'Guaranteed Value.png' | asset_url }}"  width="113" height="90" />
+                            <img  loading="eager" src={InstantCredit} width="113" height="90" />
+                            <img  loading="eager" src={CarbonCapture}  width="113" height="90" />
+                            <img  loading="eager" src={FreeShipping}  width="113" height="90" />
+                            <img  loading="eager" src={GuaranteedValue}  width="113" height="90" />
                         </div>
 
-                        <img class="steps" src="{{ 'Steps.png' | asset_url }}" width="563" height="308" />
+                        <img className="steps" src={Steps} width="563" height="308" />
 
-                        <button class="start-trade-in">Start Trade-In</button>
+                        <button className="start-trade-in">Start Trade-In</button>
 
                     </div>
 
