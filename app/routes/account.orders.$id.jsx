@@ -1,6 +1,7 @@
 import {json, redirect} from '@shopify/remix-oxygen';
 import {Link, useLoaderData} from '@remix-run/react';
 import {Money, Image, flattenConnection} from '@shopify/hydrogen';
+import {ShopTradeInButton} from "~/components/Birl/ShopTradeInButton";
 
 export const meta = ({data}) => {
   return [{title: `Order ${data?.order?.name}`}];
@@ -185,6 +186,9 @@ function OrderLineRow({lineItem}) {
       <td>{lineItem.quantity}</td>
       <td>
         <Money data={lineItem.discountedTotalPrice} />
+      </td>
+      <td>
+          <ShopTradeInButton item={lineItem}  />
       </td>
     </tr>
   );

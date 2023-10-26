@@ -14,7 +14,7 @@ export function BirlWelcomeGuest({Customer, StoreName}) {
         return (
             <>
                 <div className={"max-w-7xl mx-auto min-h-screen"}>
-                    <div className={"grid grid-cols-2"}>
+                    <div className={"grid grid-cols-1 md:grid-cols-2"}>
                         <div className={"min-w-[50%]"}>
                             <img loading="eager" className="object-cover min-h-screen" src="http://localhost:3000/background-guest.png"  />
                         </div>

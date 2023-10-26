@@ -142,6 +142,7 @@ const ORDER_ITEM_FRAGMENT = `#graphql
     statusUrl
     processedAt
   }
+
 `;
 
 export const CUSTOMER_FRAGMENT = `#graphql
@@ -159,6 +160,7 @@ export const CUSTOMER_FRAGMENT = `#graphql
         ...OrderItem
       }
       pageInfo {
+        startCursor
         hasPreviousPage
         hasNextPage
         hasNextPage
@@ -170,6 +172,7 @@ export const CUSTOMER_FRAGMENT = `#graphql
 `;
 
 // NOTE: https://shopify.dev/docs/api/storefront/latest/queries/customer
+
 const CUSTOMER_ORDERS_QUERY = `#graphql
   ${CUSTOMER_FRAGMENT}
   query CustomerOrders(
@@ -186,3 +189,5 @@ const CUSTOMER_ORDERS_QUERY = `#graphql
     }
   }
 `;
+
+
