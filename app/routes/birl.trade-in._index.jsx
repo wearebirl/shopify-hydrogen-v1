@@ -6,6 +6,7 @@ import {TradeInCategorySelector} from "~/components/Birl/TradeInCategorySelector
 import {BirlTradeinProgress} from "~/components/Birl/BirlTradeinProgress";
 import TradeInProgressBar from "~/components/Birl/TradeInProgressBar";
 import BirlBanner from "~/components/Birl/BirlBanner";
+import {BirlHeading} from "~/components/Birl/BirlHeading";
 
 export const meta = () => {
   return [{title: 'Birl Welcome'}];
@@ -47,6 +48,7 @@ export default function Wecome() {
   return (
     <div>
       <BirlBanner></BirlBanner>
+      <BirlHeading headingText={"What are you trading in?"}></BirlHeading>
       <TradeInProgressBar currentStep={0} />
       <TradeInCategorySelector  />
     </div>

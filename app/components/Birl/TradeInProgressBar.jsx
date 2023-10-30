@@ -1,6 +1,4 @@
-
-
-export default function TradeInProgressBar({currentStep, item}){
+export default function TradeInProgressBar({currentStep, item}) {
     /**
      *
      * Step will be 0 to 6
@@ -10,7 +8,7 @@ export default function TradeInProgressBar({currentStep, item}){
         {
             stepId: 0,
             title: 'Item',
-            ShortTitle: 'Categorty',
+            ShortTitle: 'Category',
             description: 'Item Category or Item',
         },
         {
@@ -24,31 +22,39 @@ export default function TradeInProgressBar({currentStep, item}){
             title: 'Trade-in Value',
             ShortTitle: 'Credit',
             description: '',
-            active: true,
         },
         {
             stepId: 3,
             title: 'Contact Detials',
             ShortTitle: 'Contact',
             description: '',
-            active: true,
         },
         {
             stepId: 4,
             title: 'Review',
             ShortTitle: 'Review',
             description: '',
-            active: true,
         }
-]
+    ]
 
-    return(
-        <div>
-            {currentStep}
+    return (
+
+        <div className="max-w-7xl py-6 mx-auto">
+            <div className="flex">
+                <div className="w-11/12 lg:w-2/6 mx-auto">
+                    <div className=" h-1 flex items-center justify-between">
+
+
+
+                    </div>
+                </div>
+            </div>
+
+
         </div>
 
-    )
 
+    )
 
 
 }

@@ -41,7 +41,7 @@ export function BirlWelcomeGuest({Customer, StoreName}) {
                                 {customer ?
 
                                     <div className="birl-guest-welcome-buttons space-y-0.5">
-                                        <Link to={'/birl/orders'}>
+                                        <Link to={'/account/orders'}>
                                             <div className="birl-button border border-gray-300 rounded-[10px] px-[20px] py-[20px] mb-1 mt-1 text-left">
                                                     <div className={"flex flex-row "}>
                                                         <span className={"font-semibold"}>Bought an item through the {StoreName} online store?</span>

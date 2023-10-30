@@ -9,7 +9,13 @@ export default async function handleRequest(
   responseHeaders,
   remixContext,
 ) {
-  const {nonce, header, NonceProvider} = createContentSecurityPolicy();
+  const {nonce, header, NonceProvider} = createContentSecurityPolicy({
+    styleSrc: [
+      "'self'",
+      'https://cdn.shopify.com',
+      'https://via.placeholder.com',
+    ],
+  });
 
   const body = await renderToReadableStream(
     <NonceProvider>
@@ -29,6 +35,8 @@ export default async function handleRequest(
   if (isbot(request.headers.get('user-agent'))) {
     await body.allReady;
   }
+
+
 
   responseHeaders.set('Content-Type', 'text/html');
   responseHeaders.set('Content-Security-Policy', header);
