@@ -36,7 +36,7 @@ export async function loader({request, context}) {
     } else {
         // loggedIn, default redirect to the orders page
         if (isBirlHome) {
-            return redirect('/birl/orders');
+            return redirect('/birl/welcome');
         }
     }
 

@@ -8,6 +8,11 @@
       "DOM.Iterable",
       "ES2022"
     ],
+    "images": {
+      "loader": "imgix",
+      "path": "https://example.imgix.net"
+    },
+
     "esModuleInterop": true,
     "isolatedModules": true,
     "jsx": "react-jsx",

@@ -47,8 +47,8 @@ export default function Wecome() {
 
   return (
     <div>
-      <BirlBanner></BirlBanner>
-      <BirlHeading headingText={"What are you trading in?"}></BirlHeading>
+        <BirlBanner></BirlBanner>
+        <BirlHeading headingText={"What are you trading in?"}></BirlHeading>
       <TradeInProgressBar currentStep={0} />
       <TradeInCategorySelector  />
     </div>

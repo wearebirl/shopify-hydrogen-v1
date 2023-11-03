@@ -129,7 +129,7 @@ function AccountMenu() {
         &nbsp; Addresses &nbsp;
       </NavLink>
       &nbsp;|&nbsp;
-      <NavLink to={"/birl"} style={isActiveStyle}>
+      <NavLink to={"/birl/welcome"} style={isActiveStyle}>
         &nbsp; Birl &nbsp;
         </NavLink>
       &nbsp;|&nbsp;
