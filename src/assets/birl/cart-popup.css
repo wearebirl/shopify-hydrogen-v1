@@ -1,0 +1,214 @@
+.cart-modal-popup-container{
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999999;
+    background-color: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    /* remove after position fixed is working */
+    padding: 32px 0;
+}
+
+.cart-modal-popup-content{
+    position: relative;
+    max-width: 395px;
+    width: 100%;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    padding: 32px;
+    border-radius: 12px;
+
+}
+
+.popup-item-details{
+    font-size: 12px;
+    font-weight: 400;
+    font-family: 'Inter', sans-serif;
+    color: black;
+    align-items: center;
+}
+
+.birl-credit-container{
+    padding-bottom: 10px;
+    border: 1px solid #D0D0D0;
+    border-radius: 12px;
+}
+
+.birl-credit-header{
+    border-bottom: 1px solid #D0D0D0;
+}
+
+.birl-credit-header div{
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+}
+
+.birl-credit-header a{
+    color:#344054;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
+.popup-item-details h3{
+    font-size: 14px !important;
+    margin: unset;
+    color: black;
+}
+
+.popup-item-details p{
+    margin: unset;
+    margin-top: 9px;
+    color: black;
+}
+
+.birl-credit-body{
+    width: 85%;
+    height: 140px;
+    background: #96D610;
+    border-radius: 12px;
+    margin: 10px auto;
+    padding-bottom: 15px;
+    margin-top: 16px;
+    margin-bottom: 10px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+
+}
+
+.popup-close{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.Product-Options p{
+    padding: unset;
+    margin: unset;
+}
+
+.birl-credit-body-header{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+}
+
+.birl-credit-body{
+    font-family: 'Inter', sans-serif;
+}
+
+.birl-credit-body-header h3 {
+    margin: unset;
+    padding: unset;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.birl-credit-body-content{
+    width: max-content;
+}
+
+.birl-credit-body-content > p{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 100%;
+    padding: 0 15px;
+    margin: unset;
+    font-weight: 600;
+    color:black;
+    font-size: 14px;
+}
+
+.birl-credit-body-content > span{
+    padding: 15px;
+    padding-top: 5px;
+    font-weight: 600;
+    color:black;
+    padding-bottom: 15px;
+    font-size: 13px;
+}
+
+.popup-item img{
+    margin-right: 12px; 
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.popup-item{
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.trade-in-message{
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    color:#667085;
+    text-align: center;
+    line-height: 20px;
+    margin: 16px;
+    margin-bottom: 0;
+}
+
+.popup-buttons{
+    display: flex;
+    flex-direction: column;
+    padding: 22px 0px;
+}
+
+.popup-button{
+    background-color: black;
+    color:white;
+    font-weight: 400;
+    font-size: 16px;
+    font-family: 'Inter', sans-serif;
+    padding: 16px;
+    width: 100%;
+    text-align: center;
+    text-decoration: none ;
+    border-radius: 10px;
+    line-height: 15px; /* 93.75% */
+}
+
+.popup-button:first-child{
+    margin-bottom: 8px;
+}
+
+.popup-button--primary{
+    background-color: white !important;
+    color:black !important;
+    border: 1px solid black;
+}
+
+.popup-message{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 27px;
+}
+
+.popup-message p{
+    margin: unset;
+    margin-left: 11px;
+    color:black;
+}

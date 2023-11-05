@@ -1,0 +1,64 @@
+.birl-product-cta-container{
+    padding: 8px 19px;
+    background-color: #2EA141;
+    color:white;
+    font-family: "Inter", sans-serif;
+    font-size: 12px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-radius: 40px;
+    width: max-content;
+    max-width: 100%;
+}
+
+[alt="Arrow"]{
+    width: 16px !important;
+    height: 16px !important;
+    margin-left: 8px;
+}
+
+@media screen and (max-width: 768px) {
+    .birl-product-cta-container p{
+        max-width: 330px;
+    }
+    .birl-product-cta-container{
+        width: unset;
+    }
+}
+
+.product-cta-links{
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: auto;
+}
+
+.product-cta-links button{
+   outline: none;
+   background: none;
+    border: none;
+    cursor: pointer;
+
+}
+
+.birl-product-cta-container img{
+    width: 50px;
+    height: 17px;
+    margin-right: 16px;
+}
+
+.birl-product-cta-text p{
+    margin: 0;
+}
+
+.birl-product-cta-text button{
+    color: white;
+    text-decoration: underline;
+    font-weight: 600;
+    text-underline-offset: 2px;
+    font-family: "Inter", sans-serif;
+    margin-left: 0;
+    font-size: 12px;
+    padding: 0;
+}
