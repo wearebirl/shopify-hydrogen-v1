@@ -1,11 +1,8 @@
 module.exports = {
-  extends: [
-    '@remix-run/eslint-config',
-    'plugin:hydrogen/recommended',
-  ],
+  extends: ['plugin:hydrogen/recommended', 'plugin:hydrogen/typescript'],
   rules: {
-    'hydrogen/prefer-image-component': 'off',
-    'no-useless-escape': 'off',
-    'no-case-declarations': 'off',
+    'node/no-missing-import': 'off',
+    '@typescript-eslint/ban-ts-comment': 'off',
+    '@typescript-eslint/naming-convention': 'off',
   },
 };
