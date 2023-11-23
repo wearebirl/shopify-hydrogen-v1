@@ -16,6 +16,7 @@ import {Suspense} from 'react';
 import {Text, PageHeader, Heading} from '~/components';
 import {Layout} from '~/components/index.server';
 import {statusMessage} from '~/lib/utils';
+import {TradeInButtons} from "../../../components/birl";
 
 export default function OrderDetails({response}) {
   const {id} = useRouteParams();
@@ -66,7 +67,7 @@ export default function OrderDetails({response}) {
           <Text color="subtle">Return to Account Overview</Text>
         </Link>
       </PageHeader>
-      <div className="w-full p-6 sm:grid-cols-1 md:p-8 lg:p-12 lg:py-6">
+      <div className="w-full p-6 sm:grid-cols-1 md:p-8 lg:p-12 lg:py-6 text-black">
         <div>
           <Text as="h3" size="lead">
             Order No. {order.name}
@@ -169,6 +170,8 @@ export default function OrderDetails({response}) {
                         <Money data={lineItem.discountedTotalPrice} />
                       </Text>
                     </td>
+                    <TradeInButtons item={lineItem}></TradeInButtons>
+
                   </tr>
                 ))}
               </tbody>

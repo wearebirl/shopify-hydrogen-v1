@@ -8,7 +8,7 @@ import {
     useSession,
     useLocalization,
     useShopQuery,
-    useServerAnalytics, useRouteParams,
+    useServerAnalytics, useRouteParams, fetchSync,
 } from '@shopify/hydrogen';
 
 import {PRODUCT_CARD_FRAGMENT} from '~/lib/fragments';
@@ -25,16 +25,16 @@ import {Layout, ProductSwimlane} from '~/components/index.server';
 import {
     BirlBanner,
     BirlHeading,
-    ConditionModalClient, ConditionSelection,
-    TradeInCategorySelectorClient,
+    ConditionSelection,
+
     TradeInProgressBar
-} from "../../../../components/birl";
-import YourItemDetails from "../../../../components/birl/YourItemDetails.client";
-import {MEDIA_FRAGMENT} from "../../../../lib";
+} from "../../../../../components/birl";
+import {MEDIA_FRAGMENT} from "../../../../../lib";
+import {NotFound} from "../../../../../components/global/NotFound.server";
 
 
 export default function ItemDetails({response}) {
-    const {handle} = useRouteParams();
+    const {handle, price} = useRouteParams();
     response.cache(CacheNone());
 
     const {
@@ -67,11 +67,13 @@ export default function ItemDetails({response}) {
         preload: true,
     });
 
-    if (!product) {
-        return <NotFound type="product" />;
+    let Price = parseInt(price);
+    if (Price < 0) {
+        return response.redirect('/birl');
+    } else {
+        Price = Price / 10; //fix alteration
     }
 
-    const {media, title, vendor, descriptionHtml, id, productType} = product;
 
     const {customer, featuredCollections, featuredProducts} = data;
 
@@ -95,15 +97,37 @@ export default function ItemDetails({response}) {
         customer.defaultAddress.id.lastIndexOf('?'),
     );
 
+    let item = null;
+    let birlProduct = fetchSync(`http://localhost:3001/api/StoreFronts/shopify/getProductById`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            productId: parseInt(handle),
+            merchantId: 5,
+            merchantApiKey: "TestKey"
+        })
+    })
+    if(birlProduct.ok){
+
+         item =  birlProduct.json();
+
+    } else {
+        //item has been altered by user or something else has gone wrong
+        return response.redirect('/birl');
+    }
+
+
+
     return (
         <>
             <AuthenticatedAccount
                 customer={customer}
                 addresses={addresses}
                 defaultAddress={defaultAddress}
-                featuredCollections={flattenConnection(featuredCollections)}
-                featuredProducts={flattenConnection(featuredProducts)}
                 item={item}
+                price={Price}
             />
         </>
     );
@@ -113,9 +137,8 @@ function AuthenticatedAccount({
                                   customer,
                                   addresses,
                                   defaultAddress,
-                                  featuredCollections,
-                                  featuredProducts,
-                                  item
+                                  item,
+                                 price
                               }) {
     const orders = flattenConnection(customer?.orders) || [];
 
@@ -127,8 +150,10 @@ function AuthenticatedAccount({
             </Suspense>
             <BirlBanner></BirlBanner>
             <BirlHeading headingText={"Item Condition"}></BirlHeading>
-            <TradeInProgressBar currentStep={1}></TradeInProgressBar>
-            <ConditionSelection item={item}></ConditionSelection>
+            <TradeInProgressBar currentStep={2}></TradeInProgressBar>
+
+            <ConditionSelection item={item} category={null} price={price}></ConditionSelection>
+
 
 
 

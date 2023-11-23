@@ -1,4 +1,3 @@
-"use client"
 import {Suspense} from 'react';
 import {
     CacheNone,
@@ -8,7 +7,7 @@ import {
     useSession,
     useLocalization,
     useShopQuery,
-    useServerAnalytics,
+    useServerAnalytics, fetchSync,
 } from '@shopify/hydrogen';
 
 import {PRODUCT_CARD_FRAGMENT} from '~/lib/fragments';
@@ -22,7 +21,7 @@ import {
     PageHeader,
 } from '~/components';
 import {Layout, ProductSwimlane} from '~/components/index.server';
-import {BirlBanner, BirlHeading, TradeInCategorySelectorClient, TradeInProgressBar} from "../../../components/birl";
+import {BirlBanner, BirlHeading, TradeInCategorySelector, TradeInProgressBar} from "../../../components/birl";
 
 export default function Account({response}) {
     response.cache(CacheNone());
@@ -67,6 +66,15 @@ export default function Account({response}) {
         customer.defaultAddress.id.lastIndexOf('?'),
     );
 
+
+
+
+    const cats = fetchSync('http://localhost:3000/api/birl/categories', {
+        preload: true,
+    }).json();
+
+
+
     return (
         <>
             <AuthenticatedAccount
@@ -75,6 +83,7 @@ export default function Account({response}) {
                 defaultAddress={defaultAddress}
                 featuredCollections={flattenConnection(featuredCollections)}
                 featuredProducts={flattenConnection(featuredProducts)}
+                cats={cats}
             />
         </>
     );
@@ -86,6 +95,8 @@ function AuthenticatedAccount({
                                   defaultAddress,
                                   featuredCollections,
                                   featuredProducts,
+                                    cats
+
                               }) {
     const orders = flattenConnection(customer?.orders) || [];
 
@@ -102,8 +113,8 @@ function AuthenticatedAccount({
             </Suspense>
             <BirlBanner></BirlBanner>
             <BirlHeading headingText={"Select a category"}></BirlHeading>
-            <TradeInProgressBar currentStep={0}></TradeInProgressBar>
-            <TradeInCategorySelectorClient></TradeInCategorySelectorClient>
+            <TradeInProgressBar currentStep={1}></TradeInProgressBar>
+            <TradeInCategorySelector cats={cats}></TradeInCategorySelector>
 
 
         </Layout>

@@ -4,37 +4,35 @@ import {useState} from "react";
 
 
 
-export function ConditionSelection({item, category, price}){
-
-
-   //Get item from the URL
-    // find the item and get the vaues for conditions
-
-    // update userringerdace with the item and the condition
-
-
-    // On Save Add this to the order
-
+export function ConditionSelectionCategory({item, category}){
 
 
     const conditions = [
         {
             id: 0,
+            grade: "A",
             name: "Like New",
             description: "Little to no signs of wear. The item looks and feels almost new",
+
 
         },
         {
             id: 1,
+            grade: "B",
             name: "Good",
             description: "Minor signs of wear, but no major flaws like stains or holes.",
+
         },
         {
             id: 2,
+            grade: "C",
             name: "Poor",
             description: "Visible signs of wear and flaws, minor stains, light pilling, or small holes.",
+
         },
     ]
+
+
 
     const [selectedCondition, setSelectedCondition] = useState(0);
 
@@ -52,23 +50,25 @@ export function ConditionSelection({item, category, price}){
                 item: item,
                 category: category,
                 condition: selectedCondition,
-                salePrice: price
             }));
 
-            return window.location.replace(`/birl/trade-in/value/${item.ProductId}`)
+
+
+
+            return window.location.replace(`/birl/trade-in/value`)
 
         }
     }
 
     return(
-    <div className={"max-w-7xl mx-auto text-center"}>
+    <div className={"max-w-7xl mx-auto text-center text-black"}>
         <div className={"grid grid-cols-1 md:grid-cols-2"}>
             <div className={"col-span-1"}>
                 <div className="w-full text-black text-base font-normal font-['Inter']">Please choose one of the following options that best matches your item. </div>
                 <div className="w-[630px] h-[58px] px-5 py-2.5 bg-stone-50 rounded-[10px] justify-start items-start gap-2.5 inline-flex">
                     <div className="w-[577px] text-black text-base font-semibold font-['Inter']">The condition of your item does not effect the price we pay, it is to ensure your item reaches the best location for either re-selling or recycling</div>
                 </div>
-                {JSON.stringify(item)}
+
                 <ConditionModal></ConditionModal>
                 <div className={"mt-[20px] mr-[20px]"}>
 
@@ -107,9 +107,7 @@ export function ConditionSelection({item, category, price}){
 
             </div>
             <div className={"col-span-1"}>
-
-               <YourItemDetails item={item} category={null} condition={selectedCondition} price={price}></YourItemDetails>
-
+                <YourItemDetails item={null} category={category} condition={selectedCondition}></YourItemDetails>
             </div>
 
         </div>

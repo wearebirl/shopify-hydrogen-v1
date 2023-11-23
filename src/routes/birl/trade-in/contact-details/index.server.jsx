@@ -33,7 +33,7 @@ import {MEDIA_FRAGMENT} from "../../../../lib";
 
 
 export default function ItemDetails({response}) {
-    const {tradeinid} = useRouteParams();
+
     response.cache(CacheNone());
 
     const {
@@ -86,7 +86,6 @@ export default function ItemDetails({response}) {
                 defaultAddress={defaultAddress}
                 featuredCollections={flattenConnection(featuredCollections)}
                 featuredProducts={flattenConnection(featuredProducts)}
-                tradeinid={tradeinid}
             />
         </>
     );
@@ -98,7 +97,7 @@ function AuthenticatedAccount({
                                   defaultAddress,
                                   featuredCollections,
                                   featuredProducts,
-                                  tradeinid
+
                               }) {
     const orders = flattenConnection(customer?.orders) || [];
 

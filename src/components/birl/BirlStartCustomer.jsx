@@ -15,7 +15,7 @@ export function BirlStartCustomer({Customer, StoreName}) {
 
     return (
         <>
-            <div className={"max-w-7xl mx-auto min-h-screen"}>
+            <div className={"max-w-7xl mx-auto min-h-screen text-black"}>
                 <div className={"grid grid-cols-1 md:grid-cols-2"}>
                     <div className={"min-w-[50%]"}>
                         <img loading="eager" className="object-cover min-h-screen" src={backgroundGuest}  />
@@ -43,7 +43,8 @@ export function BirlStartCustomer({Customer, StoreName}) {
                             {Customer ?
 
                                 <div className="birl-guest-welcome-buttons -[15px]">
-                                    <Link to={'/account/orders'}>
+                                    {/* This link can be set to an orders list page or left as account home as default  */}
+                                    <Link to={'/account'}>
                                         <div className="birl-button border border-gray-300 rounded-[10px] px-[20px] py-[20px] mb-[15px] mt-1 text-left">
                                             <div className={"flex flex-row "}>
                                                 <span className={"font-semibold"}>Bought an item through the {StoreName} online store?</span>

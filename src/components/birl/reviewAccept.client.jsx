@@ -1,21 +1,121 @@
 import {YourItemDetails} from "./YourItemDetails.client";
-import {Link} from "@shopify/hydrogen";
+import {fetchSync, Link} from "@shopify/hydrogen";
+import {useEffect, useState} from "react";
 
 
-export function ReviewAccept({tradeinid}){
+export function ReviewAccept({}){
 
         // Contact API for stored Trade In details to populate this page
+        let accepted = false
+        const [order, setOrder] = useState(null);
+        const [error, setError] = useState({
+            "status": null,
+            "message": ""
+        })
 
 
-        function nextStep() {
-            if (validated !== false) {
-                // Contact API to get net step
+    useEffect(() => {
+        // Update the document title using the browser API
 
-                // Create voucher in Store
+        const item = JSON.parse( localStorage.getItem('birlOrder'))
+        setOrder(item)
 
-                return window.location.replace('/birl/trade-in/complete')
+    }, []);
+
+    function saveOrder() {
+
+        if(order){
+
+            const data = {
+                "order": {
+                    "customer": {
+                        "fullName": order.customer.fullName,
+                        "phoneNumber": order.customer.phoneNumber,
+                        "email": order.customer.email,
+                        "address": order.customer.address,
+                        "city": order.customer.city,
+                        "county": order.customer.county,
+                        "postcode": order.customer.postcode
+                    },
+                    "item": JSON.stringify(order.item),
+                    "category": JSON.stringify(order.category),
+                    "status": "accepted",
+                    "voucher": JSON.stringify(order.voucher)
+                },
+                "merchantId": 5,
+                "merchantApiKey": "TestKey"
             }
+
+            console.log(JSON.stringify(data))
+
+            try {
+                const responce = fetchSync(`http://localhost:3001/api/StoreFronts/shopify/createOrder`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        order: {
+                            customer: {
+                                fullName: order.customer.fullName,
+                                phoneNumber: order.customer.phoneNumber,
+                                email: order.customer.email,
+                                address: order.customer.address,
+                                city: order.customer.city,
+                                county: order.customer.county,
+                                postcode: order.customer.postcode
+                            },
+                            item: JSON.stringify(order.item),
+                            category: JSON.stringify(order.category),
+                            status: "accepted",
+                            voucher: JSON.stringify(order.voucher)
+                        },
+                        merchantId: 5,
+                        merchantApiKey: "TestKey"
+                    })
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log('Success:', data);
+                        accepted = true
+                    })
+                    .catch((error) => {
+                        console.error('Error:', error);
+                        accepted = false
+                    });
+
+
+            } catch (e) {
+                alert("There was an error saving your order, please try again" + JSON.stringify(e) + " data: " + JSON.stringify(data))
+                console.log(JSON.stringify(data))
+                accepted = false
+            }
+        } else {
+            accepted = false
         }
+
+        return accepted
+
+
+    }
+
+    function nextStep() {
+
+            let status = saveOrder()
+
+            if (status) {
+                localStorage.setItem('birlOrder', null)
+                return window.location.replace('/birl/trade-in/complete')
+            } else {
+                setError({
+                    "status": 500,
+                    "message": "There was an error saving your order, please try again"
+                })
+
+
+            }
+    }
+
 
 
         return(
@@ -27,23 +127,40 @@ export function ReviewAccept({tradeinid}){
                             <div className={" w-full  rounded-xl border border-black border-opacity-20"}>
                                 <div className="flex-row ">
                                     <div className="grid grid-cols-2 px-[30px]" >
-                                        <div className="flex justify-items-start">
+                                        <div className="flex justify-items-start text-black" >
                                             <h1>Personal Details</h1>
                                         </div>
 
-                                        <div className="flex justify-end pt-[30px]">
-                                            <Link to={`/birl/trade-in/contact-details/${tradeinid}`}>
+                                        <div className="flex justify-end pt-[30px] text-black hover:underline">
+                                            <Link to={`/birl/trade-in/contact-details/`}>
                                                 <button>Edit details</button>
                                             </Link>
                                         </div>
                                     </div>
+                                    <div className="flex-row ">
+                                        <div className="grid grid-cols-2 px-[30px] text-black" >
+                                            <div className="flex justify-items-start text-black" >
+                                            Error: {error.message}
+                                            </div>
+                                        </div>
+                                    </div>
 
                                     <div className="grid grid-cols-1 px-[30px] pb-[30px]" >
-                                        <div className="flex text-gray-500 text-base font-normal font-['Inter'] leading-normal">Olivia Jones</div>
-                                        <div className="flex text-gray-500 text-base font-normal font-['Inter'] leading-normal">+44 (0) 7713-240-568</div>
-                                        <div className="flex text-gray-500 text-base font-normal font-['Inter'] leading-normal">42 Spring Gardens</div>
-                                        <div className="flex text-gray-500 text-base font-normal font-['Inter'] leading-normal">Manchester, M2 1AB</div>
-                                        <div className="flex text-gray-500 text-base font-normal font-['Inter'] leading-normal">olivia@outlook.com</div>
+                                        {order !== null ?
+                                            <>
+                                                <div className="flex text-gray-500 text-base font-normal font-['Inter'] leading-normal">{order.customer.fullName}</div>
+                                                <div className="flex text-gray-500 text-base font-normal font-['Inter'] leading-normal">+44 (0) {order.customer.phoneNumber}</div>
+                                                <div className="flex text-gray-500 text-base font-normal font-['Inter'] leading-normal">{order.customer.address}</div>
+                                                <div className="flex text-gray-500 text-base font-normal font-['Inter'] leading-normal">{order.customer.city}</div>
+                                                <div className="flex text-gray-500 text-base font-normal font-['Inter'] leading-normal">{order.customer.county}, {order.customer.postcode}</div>
+                                                <div className="flex text-gray-500 text-base font-normal font-['Inter'] leading-normal">{order.customer.email}</div>
+                                            </>
+
+                                         : <>
+                                            <div>loading</div>
+                                            </>
+                                        }
+
                                     </div>
 
 
@@ -130,14 +247,18 @@ export function ReviewAccept({tradeinid}){
 
                             </div>
                             <div className={"float-left"} onClick={()=>nextStep()}>
-                                <div className={`px-10 h-10  py-2 "bg-black"   rounded-lg shadow justify-center items-center gap-2 inline-flex`}>
+                                <div className={`px-10 h-10  py-2 bg-black  mt-2 rounded-lg shadow justify-center items-center gap-2 inline-flex`}>
                                     <div className="text-white text-base font-semibold font-['Inter'] leading-normal">Confirm trade-in</div>
                                 </div>
                             </div>
 
                         </div>
                         <div className={"col-span-1"}>
-                            <YourItemDetails item={"item"} condition={1}></YourItemDetails>
+                            {order !== null && order.length !== 0 && (
+
+                            <YourItemDetails item={order.item }  category={order.category} condition={order.condition} price={2}></YourItemDetails>
+
+                            )}
                         </div>
 
                     </div>

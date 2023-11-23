@@ -8,7 +8,7 @@ import {
     useSession,
     useLocalization,
     useShopQuery,
-    useServerAnalytics, useRouteParams,
+    useServerAnalytics, useRouteParams, fetchSync,
 } from '@shopify/hydrogen';
 
 import {PRODUCT_CARD_FRAGMENT} from '~/lib/fragments';
@@ -24,15 +24,15 @@ import {
 import {Layout, ProductSwimlane} from '~/components/index.server';
 import {
     BirlBanner,
-    BirlHeading,
-    ConditionSelection,
+    BirlHeading, ConditionSelection,
+    ConditionSelectionCategory,
     TradeInCategorySelectorClient,
     TradeInProgressBar
 } from "../../../../components/birl";
 
 
 export default function Account({response}) {
-    const {categoryid} = useRouteParams();
+    const {categoryId} = useRouteParams();
     response.cache(CacheNone());
 
     const {
@@ -75,6 +75,23 @@ export default function Account({response}) {
         customer.defaultAddress.id.lastIndexOf('?'),
     );
 
+
+    const categoryPries = fetchSync('http://localhost:3001/api/StoreFronts/shopify/getCategory',
+        {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                merchantId: 5,
+                merchantApiKey:"TestKey",
+                categoryId: parseInt(categoryId),
+            }),
+
+        }
+        ).json()
+
+
     return (
         <>
             <AuthenticatedAccount
@@ -83,7 +100,7 @@ export default function Account({response}) {
                 defaultAddress={defaultAddress}
                 featuredCollections={flattenConnection(featuredCollections)}
                 featuredProducts={flattenConnection(featuredProducts)}
-                categoryid={categoryid}
+                category={categoryPries}
             />
         </>
     );
@@ -95,7 +112,7 @@ function AuthenticatedAccount({
                                   defaultAddress,
                                   featuredCollections,
                                   featuredProducts,
-                                  categoryid
+                                  category
 
                               }) {
     const orders = flattenConnection(customer?.orders) || [];
@@ -113,8 +130,8 @@ function AuthenticatedAccount({
             </Suspense>
             <BirlBanner></BirlBanner>
             <BirlHeading headingText={"Item Condition"}></BirlHeading>
-            <TradeInProgressBar currentStep={1}></TradeInProgressBar>
-            <ConditionSelection item={null} category={categoryid}></ConditionSelection>
+            <TradeInProgressBar currentStep={2}></TradeInProgressBar>
+            <ConditionSelectionCategory item={null} category={category} ></ConditionSelectionCategory>
 
 
 

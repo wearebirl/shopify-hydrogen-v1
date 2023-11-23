@@ -30,11 +30,11 @@ import {
 } from "../../../../components/birl";
 
 import {MEDIA_FRAGMENT} from "../../../../lib";
-import {ReviewAccept} from "../../../../components/birl/reviewAccept.client";
+import {VoucherSelection} from "../../../../components/birl/VoucherSelection.client";
 
 
 export default function ItemDetails({response}) {
-    const {tradeinid} = useRouteParams();
+
     response.cache(CacheNone());
 
     const {
@@ -87,7 +87,7 @@ export default function ItemDetails({response}) {
                 defaultAddress={defaultAddress}
                 featuredCollections={flattenConnection(featuredCollections)}
                 featuredProducts={flattenConnection(featuredProducts)}
-                tradeinid={tradeinid}
+
             />
         </>
     );
@@ -99,7 +99,7 @@ function AuthenticatedAccount({
                                   defaultAddress,
                                   featuredCollections,
                                   featuredProducts,
-                                  tradeinid
+
                               }) {
     const orders = flattenConnection(customer?.orders) || [];
 
@@ -107,13 +107,12 @@ function AuthenticatedAccount({
     return (
         <Layout>
             <Suspense>
-                <Seo type="noindex" data={{title: 'Review Details '}} />
+                <Seo type="noindex" data={{title: 'Account details'}} />
             </Suspense>
             <BirlBanner></BirlBanner>
-            <BirlHeading headingText={"Review & Accept"}></BirlHeading>
-            <TradeInProgressBar currentStep={5}></TradeInProgressBar>
-            <ReviewAccept tradeinid={tradeinid}></ReviewAccept>
-
+            <BirlHeading headingText={"Your Credit"}></BirlHeading>
+            <TradeInProgressBar currentStep={3}></TradeInProgressBar>
+            <VoucherSelection></VoucherSelection>
 
 
         </Layout>

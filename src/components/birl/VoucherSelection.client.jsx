@@ -1,56 +1,216 @@
-import {useState} from "react";
+import {useState, useEffect} from "react";
 import {YourItemDetails} from "./YourItemDetails.client";
 
 
+function calculatePrice(type, salePrice, value) {
+
+    if (type === "fixed-amount") {
+        return value;
+    } else {
+        // Need to have sold price
+        return   (salePrice * value) / 100;
+    }
+}
+
+
 export function VoucherSelection(){
-
-    const [itemCondition, setItemCondition] = useState(1)
-    const [item, setItem] = useState(1)
-
-    /**
-     * get vouchers from API based on item
-     *
-     * @type {[{minSpend: number, id: number, credit: number, validUntill: string},{minSpend: number, id: number, credit: number, validUntill: string}]}
-     */
-    const vouchers = [
-        {
-            id: 0,
-            credit: 10.00,
-            validUntill: "31/12/2021",
-            minSpend: 0,
-            fromColour: "lime-900",
-            toColour: "slate-600",
-            baseColour: "lime-500"
-        },
-        {
-            id: 0,
-            credit: 20.00,
-            validUntill: "31/12/2021",
-            minSpend: 100.00,
-            fromColour: "lime-900",
-            toColour: "slate-600",
-            baseColour: "lime-500"
-        },
-    ]
-
-
+    const [order, setOrder] = useState(null);
     const [selectdVoucher, setSelectdVoucher] = useState(0);
+    const [vouchers, setVouchers] = useState([
+
+    ]);
+
+
+
 
     function setUserSelectedVoucer(voucherSelection) {
-
-
         setSelectdVoucher(voucherSelection);
     }
 
 
+    useEffect(() => {
+        // Update the document title using the browser API
+        const item = JSON.parse( localStorage.getItem('birlOrder'))
+        setOrder(item)
+
+    }, []);
+
+    useEffect(() => {
+        // Update the document title using the browser API
+        if(order !== null) {
+
+            if (order.item !== null) {
+                if (order.condition === 0) {
+                    setVouchers([
+                        {
+                            id: 0,
+                            credit: calculatePrice(order.item.GradeAType, order.item.salePrice, order.item.GradeANVA),
+                            validUntill:  ExpDate(6), // today+ 6 months
+                            minSpend: 0,
+                            bg:"colour",
+                            fromColour: "lime-900",
+                            toColour: "slate-600",
+                            baseColour: "lime-500"
+                        },
+                        {
+                            id: 0,
+                            credit: calculatePrice(order.item.GradeAType, order.item.salePrice, order.item.GradeANVA),
+                            validUntill: ExpDate(),
+                            minSpend:  ((order.item.salePrice / 100) * GradeANPVC) * 3,
+                            bg:"gradient",
+                            baseColour: "lime-500"
+                        },
+                    ])
+
+                } else if (order.condition === 1) {
+                    setVouchers([
+                        {
+                            id: 0,
+                            credit: calculatePrice(order.item.GradeBType, order.item.salePrice, order.item.GradeBNVA),
+                            validUntill:  ExpDate(6), // today+ 6 months
+                            minSpend: 0,
+                            bg:"colour",
+                            fromColour: "lime-900",
+                            toColour: "slate-600",
+                            baseColour: "lime-500"
+                        },
+                        {
+                            id: 0,
+                            credit: calculatePrice(order.item.GradeBType, order.item.salePrice, order.item.GradeBNVA),
+                            validUntill: ExpDate(),
+                            minSpend:  ((order.item.salePrice / 100) * GradeBNPVC) * 3,
+                            bg:"gradient",
+                            baseColour: "lime-500"
+                        },
+                    ])
+                } else {
+                    setVouchers([
+                        {
+                            id: 0,
+                            credit: calculatePrice(order.item.GradeCType, order.item.salePrice, order.item.GradeCNVA),
+                            validUntill:  ExpDate(6), // today+ 6 months
+                            minSpend: 0,
+                            bg:"colour",
+                            fromColour: "lime-900",
+                            toColour: "slate-600",
+                            baseColour: "lime-500"
+                        },
+                        {
+                            id: 0,
+                            credit: calculatePrice(order.item.GradeAType, order.item.salePrice, order.item.GradeCNVA),
+                            validUntill: ExpDate(),
+                            minSpend:  ((order.item.salePrice / 100) * GradeCNPVC) * 3,
+                            bg:"gradient",
+                            baseColour: "lime-500"
+                        },
+                    ])
+                }
+
+            } else {
+                if (order.condition === 0) {
+                    setVouchers([
+                        {
+                            id: 0,
+                            credit: order.category[0].GradeA,
+                            validUntill:  ExpDate(6), // today+ 6 months
+                            minSpend: 0,
+                            bg:"colour",
+                            fromColour: "lime-900",
+                            toColour: "slate-600",
+                            baseColour: "lime-500"
+                        },
+                        {
+                            id: 0,
+                            credit: order.category[0].GradeAUpsell,
+                            validUntill: ExpDate(),
+                            minSpend: order.category[0].GradeAThreshold,
+                            bg:"gradient",
+                            baseColour: "lime-500"
+                        },
+                    ])
+
+                } else if (order.condition === 1) {
+                    setVouchers([
+                        {
+                            id: 0,
+                            credit: order.category[0].GradeB,
+                            validUntill: ExpDate(),
+                            minSpend: 0,
+                            bg:"colour",
+                            fromColour: "lime-900",
+                            toColour: "slate-600",
+                            baseColour: "lime-500"
+                        },
+                        {
+                            id: 0,
+                            credit: order.category[0].GradeBUpsell,
+                            validUntill: ExpDate(),
+                            minSpend: order.category[0].GradeBThreshold,
+                            bg:"gradient",
+                            baseColour: "lime-500"
+                        },
+                    ])
+                } else {
+                    setVouchers([
+                        {
+                            id: 0,
+                            credit: order.category[0].GradeC,
+                            validUntill: ExpDate(),
+                            minSpend: 0,
+                            bg:"colour",
+                            fromColour: "lime-900",
+                            toColour: "slate-600",
+                            baseColour: "lime-500"
+                        },
+                        {
+                            id: 0,
+                            credit: order.category[0].GradeCUpsell,
+                            validUntill: ExpDate(),
+                            minSpend: order.category[0].GradeCThreshold,
+                            bg:"gradient",
+                            baseColour: "lime-500"
+                        },
+                    ])
+                }
+
+            }
+        }
+
+    }, [order]);
+
+    /**
+     *
+     * Allow future changes to the months to be added this
+     * @returns {string}
+     * @constructor
+     */
+    function ExpDate(months = 6){
+
+        // Get the current date
+        var currentDate = new Date();
+
+        // Add 5 months to the current date
+        currentDate.setMonth(currentDate.getMonth() + months);
+
+        return (currentDate.getUTCMonth() + 1) + "/" + currentDate.getUTCFullYear();
+
+    }
 
     function nextStep() {
         if (selectdVoucher !== null) {
-            // Contact API to get net step
+
+            localStorage.setItem('birlOrder', JSON.stringify({
+                ...order,
+                voucher: {
+                    ...vouchers[selectdVoucher]
+                }
+            }))
 
             // Create voucher in Store
 
-            return window.location.replace('/birl/trade-in/contact-details/123')
+            return window.location.replace(`/birl/trade-in/contact-details/`)
+        }else {
+            alert("Please select a voucher")
         }
     }
 
@@ -58,14 +218,17 @@ export function VoucherSelection(){
         <div className={"max-w-7xl mx-auto text-center"}>
             <div className={"grid grid-cols-1 md:grid-cols-2"}>
                 <div className={"col-span-1"}>
-                    <div className={"bg-lime-900"}></div>
-                    <div className="w-full text-left text-black text-base font-normal font-['Inter']">Good news! We have two credit options available for your item, please choose the amount you would like to proceed with:</div>
+                    <div className={"bg-lime-900 w-[500px] h-fit"}>
 
+
+
+                    </div>
+                    <div className="w-full text-left text-black text-base font-normal font-['Inter']">Good news! We have two credit options available for your item, please choose the amount you would like to proceed with:</div>
                     <div className={"flex flex-row mt-[20px] mr-[20px] space-x-3 my-auto"}>
                         {vouchers.map((voucher, index) => (
                             <>
-                                <div className={` ${selectdVoucher === index ? "block w-80 h-48" : "hidden md:block w-60 h-36"} my-auto  relative mb-[20px]`}  onClick={()=>setUserSelectedVoucer(index)}>
-                                    <div className={`${selectdVoucher === index ? "block w-80 h-48" : "hidden md:block w-60 h-36"}  left-0 top-0 absolute bg${voucher.baseColour} bg-gradient-to-tr from-${voucher.fromColour} to-${voucher.toColour} rounded-2xl shadow border border-white`} />
+                                <div className={` ${selectdVoucher === index ? "block w-80 h-48" : "hidden md:block w-60 h-36"} my-auto  relative mb-[20px]  rounded-2xl`}  onClick={()=>setUserSelectedVoucer(index)}>
+                                    <div className={`${selectdVoucher === index ? "block w-80 h-48" : "hidden md:block w-60 h-36"}  left-0 top-0 absolute ${voucher.bg === "gradient" ? " bg-gradient-to-tr from-gray-900 to-slate-600 " : "bg-lime-500"} rounded-2xl shadow border border-white`} />
                                     <div className="left-[15px] top-[15px] absolute text-white text-base font-semibold font-['Inter']">
                                         £{voucher.credit} Credit
                                     </div>
@@ -123,9 +286,13 @@ export function VoucherSelection(){
                         </div>
                     </div>
 
+
                 </div>
-                <div className={"col-span-1"}>
-                    <YourItemDetails item={item} condition={itemCondition}></YourItemDetails>
+                <div className={"col-span-1 text-black"}>
+                    {order !== null && order.length !== 0 && (
+                        <YourItemDetails item={order.item}  category={order.category} condition={order.condition} price={2}></YourItemDetails>
+
+                    )}
                 </div>
 
 
