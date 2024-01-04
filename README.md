@@ -25,16 +25,29 @@ before the button is rendered your shop customer. These items are managed in the
 - Routes are stored in the /routes/birl folder this folder contains all routes used in the project. 
 - this will create new pages in the store to allow users to access Birl App
 
+### API
+
+- API calls are stored in the /api/birl folder this folder contains all api calls used in the project.
+- this will create new pages in the store to allow users to access Birl App
+
 ### Changes Required
 - Where API keys are required, please use the environment key store  file to store the keys, Checking that the correct key is  referenced in the components and routes. 
 
 ### Authentication keys required
 
-Birl Merchant Id, This will be provided by birl 
-Birl API Key , This will be provided by birl
+merchantId, This will be provided by birl (Merchant ID)
+merchantApiKey , This will be provided by birl (MerchantAPI Key)
 
 These keys are specific to your store, and marketplace and will be provided by Birl. If you operate 
 in multiple marketplaces, storefronts you will be provided with a key for each marketplace. please check that the correct 
 key is referenced in the components and routes. Incorrect keys will result in no items being able to elegable from
 previously ordered items.
 
+### Getting Development Started
+
+- Clone the repo
+- Install dependencies `npm install`
+- Start the dev server `npm run dev`
+
+Warning: When running Dev Server if a change is made to the code the server will not always reload after the error. 
+you will have to restart the server. 
