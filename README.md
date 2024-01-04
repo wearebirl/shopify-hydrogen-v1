@@ -5,7 +5,7 @@
 
 - Components are Stored in the /components/birl this folder contains all components used in the project
 
-#### Adding compinents to your store pages
+#### Adding components to your store pages
 - AnnouncementBar
 - Cart Widget
 - Product CTA
