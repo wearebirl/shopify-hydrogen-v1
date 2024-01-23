@@ -7,7 +7,7 @@ import {
     useSession,
     useLocalization,
     useShopQuery,
-    useServerAnalytics,
+    useServerAnalytics, fetchSync,
 } from '@shopify/hydrogen';
 
 import {PRODUCT_CARD_FRAGMENT} from '~/lib/fragments';
@@ -56,6 +56,8 @@ export default function Account({response}) {
 
     if (!customer) return response.redirect('/account/login');
 
+    let blockedUser = false;
+
     // The logged-in analytics state.
     useServerAnalytics({
         shopify: {
@@ -73,6 +75,34 @@ export default function Account({response}) {
         0,
         customer.defaultAddress.id.lastIndexOf('?'),
     );
+    customer.blocked = false
+
+    if (customer) {
+        try{
+            const response = fetchSync(`http://localhost:3001/api/StoreFronts/shopify/blockedUsers`, {
+                method: 'POST',
+                preload: true,
+
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    "merchantId": 5,
+                    "merchantApiKey": "TestKey",
+                    "email": customer.email
+                })
+            }).json()
+            customer.blocked = response.blocked
+            //console.log(JSON.stringify(response))
+
+
+        }catch (e) {
+            console.log(e)
+        }
+
+
+    }
+
 
     return (
         <>
@@ -92,7 +122,7 @@ function AuthenticatedAccount({
                                   addresses,
                                   defaultAddress,
                                   featuredCollections,
-                                  featuredProducts,
+                                  featuredProducts
                               }) {
 
 
@@ -109,8 +139,6 @@ function AuthenticatedAccount({
             </Suspense>
 
             <BirlStartCustomer Customer={customer} StoreName={"Hydrogen-1"}></BirlStartCustomer>
-
-
 
         </Layout>
     );

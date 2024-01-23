@@ -68,7 +68,6 @@ export function ConditionSelection({item, category, price}){
                 <div className="w-[630px] h-[58px] px-5 py-2.5 bg-stone-50 rounded-[10px] justify-start items-start gap-2.5 inline-flex">
                     <div className="w-[577px] text-black text-base font-semibold font-['Inter']">The condition of your item does not effect the price we pay, it is to ensure your item reaches the best location for either re-selling or recycling</div>
                 </div>
-                {JSON.stringify(item)}
                 <ConditionModal></ConditionModal>
                 <div className={"mt-[20px] mr-[20px]"}>
 

@@ -7,7 +7,7 @@ import {
     useSession,
     useLocalization,
     useShopQuery,
-    useServerAnalytics, fetchSync,
+    useServerAnalytics, fetchSync, Link,
 } from '@shopify/hydrogen';
 
 import {PRODUCT_CARD_FRAGMENT} from '~/lib/fragments';
@@ -73,6 +73,30 @@ export default function Account({response}) {
         preload: true,
     }).json();
 
+    customer.blocked = true
+    if (customer) {
+        try {
+            const response = fetchSync(`http://localhost:3001/api/StoreFronts/shopify/blockedUsers`, {
+                method: 'POST',
+                preload: true,
+
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    "merchantId": 5,
+                    "merchantApiKey": "TestKey",
+                    "email": customer.email
+                })
+            }).json()
+            customer.blocked = response.blocked
+            console.log(JSON.stringify(response))
+
+
+        } catch (e) {
+            console.log(e)
+        }
+    }
 
 
     return (
@@ -83,7 +107,9 @@ export default function Account({response}) {
                 defaultAddress={defaultAddress}
                 featuredCollections={flattenConnection(featuredCollections)}
                 featuredProducts={flattenConnection(featuredProducts)}
+
                 cats={cats}
+
             />
         </>
     );
@@ -113,8 +139,12 @@ function AuthenticatedAccount({
             </Suspense>
             <BirlBanner></BirlBanner>
             <BirlHeading headingText={"Select a category"}></BirlHeading>
-            <TradeInProgressBar currentStep={1}></TradeInProgressBar>
-            <TradeInCategorySelector cats={cats}></TradeInCategorySelector>
+            {customer.blocked ? <div className="text-center text-2xl text-red-500">
+                Sorry, something is wrong with your account. Please contact Birl at hello@wearebirl.co.uk </div> : <>
+            <   TradeInProgressBar currentStep={1}></TradeInProgressBar>
+                <TradeInCategorySelector cats={cats}></TradeInCategorySelector>
+            </>
+            }
 
 
         </Layout>

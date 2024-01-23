@@ -1,6 +1,6 @@
 export async function api({params}) {
 
-    console.log(JSON.stringify(params))
+
 
     try {
         const response = await fetch('http://localhost:3001/api/StoreFronts/shopify/startOrder',
@@ -12,7 +12,7 @@ export async function api({params}) {
                 body: JSON.stringify({
                     "merchantId": 2,
                     "merchantApiKey": "TestKey",
-                    "OrderId": 1//_request.body.order.OrderId,
+                    "OrderId": params.request.body.order.OrderId,
                 })
             });
 

@@ -2,7 +2,7 @@ import {fetchSync, Link, Money} from "@shopify/hydrogen";
 import {Text, PageHeader, Heading} from '~/components';
 import BirlTradeInButton from "./birlTradeInButton.client";
 
-export function TradeInButtons({item}){
+export function TradeInButtons({item, fulfillmentStatus}){
 
     let tradeInAllowed = false; //assume all trade-ins are allowed
     // Check if customer is banned from trade-in
@@ -47,13 +47,14 @@ export function TradeInButtons({item}){
        }
 
     } else if(item.variant.product.handle !== null && item.variant.product.handle !== "") {
+
         let birlProduct = fetchSync(`http://localhost:3001/api/StoreFronts/shopify/getProduct`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                handle: "the-collection-snowboard-hydrogen",
+                handle: item.variant.product.handle ,
                 merchantId: 5,
                 sku: "",
                 merchantApiKey: "TestKey"
@@ -75,14 +76,13 @@ export function TradeInButtons({item}){
 
 
 
-    if(tradeInAllowed) {
+    if(tradeInAllowed && fulfillmentStatus === "fulfilled"){
 
         return (
             <>
             <td id={"birl-item-status"} className="px-3 py-4 text-right align-top sm:align-middle sm:table-cell">
                 <Text>
                     Trade-in {tradeInAllowed? "eligible " : "Not eligible"}
-
                 </Text>
             </td>
             <td id={"birl-item-button"} className="px-3 py-4 text-right align-top sm:align-middle sm:table-cell">
@@ -100,7 +100,7 @@ export function TradeInButtons({item}){
             <>
             <td className="px-3 py-4 text-right align-top sm:align-middle sm:table-cell" >
                 <Text>
-                    Trade-in {tradeInAllowed? "eligible " : "Not eligible"}
+                    Trade-in {tradeInAllowed && fulfillmentStatus !=="fulfilled" ? "Not eligible " : ""}
                 </Text>
             </td>
             <td className="px-3 py-4 text-right align-top sm:align-middle sm:table-cell">

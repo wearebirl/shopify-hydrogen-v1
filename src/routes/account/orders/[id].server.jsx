@@ -9,7 +9,7 @@ import {
   useRouteParams,
   useSession,
   useLocalization,
-  useShopQuery,
+  useShopQuery, fetchSync,
 } from '@shopify/hydrogen';
 import {Suspense} from 'react';
 
@@ -46,6 +46,32 @@ export default function OrderDetails({response}) {
   const [order] = flattenConnection(data?.customer?.orders ?? {}) || [null];
 
   if (!order) return null;
+  let blocked = false
+  if (order) {
+    try{
+      const response = fetchSync(`https://staging.wearebirl.com/api/StoreFronts/shopify/blockedUsers`, {
+        method: 'POST',
+        preload: true,
+
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          "merchantId": 5,
+          "merchantApiKey": "TestKey",
+          "email": data?.customer?.email
+        })
+      }).json()
+      blocked= response.blocked
+      console.log(JSON.stringify(response + "email " + JSON.stringify(data?.customer)))
+
+
+    }catch (e) {
+      console.log(e)
+    }
+
+
+  }
 
   const lineItems = flattenConnection(order.lineItems);
   const discountApplications = flattenConnection(order.discountApplications);
@@ -170,7 +196,9 @@ export default function OrderDetails({response}) {
                         <Money data={lineItem.discountedTotalPrice} />
                       </Text>
                     </td>
-                    <TradeInButtons item={lineItem}></TradeInButtons>
+                    {!blocked &&
+                        <TradeInButtons item={lineItem} fulfillmentStatus={order.fulfillmentStatus}></TradeInButtons>
+                    }
 
                   </tr>
                 ))}
@@ -330,6 +358,7 @@ const ORDER_QUERY = gql`
     province
     provinceCode
     zip
+    email
   }
 
   fragment DiscountApplication on DiscountApplication {
@@ -395,37 +424,39 @@ const ORDER_QUERY = gql`
     $language: LanguageCode
   ) @inContext(country: $country, language: $language) {
     customer(customerAccessToken: $customerAccessToken) {
-      orders(first: 1, query: $orderId) {
-        nodes {
-          id
-          name
-          orderNumber
-          processedAt
-          fulfillmentStatus
-          totalTaxV2 {
-            ...Money
-          }
-          totalPriceV2 {
-            ...Money
-          }
-          subtotalPriceV2 {
-            ...Money
-          }
-          shippingAddress {
-            ...AddressFull
-          }
-          discountApplications(first: 100) {
+        orders(first: 1, query: $orderId) {
             nodes {
-              ...DiscountApplication
+                id
+                name
+                orderNumber
+                processedAt
+                fulfillmentStatus
+                totalTaxV2 {
+                    ...Money
+                }
+                totalPriceV2 {
+                    ...Money
+                }
+                subtotalPriceV2 {
+                    ...Money
+                }
+                shippingAddress {
+                    ...AddressFull
+                }
+                discountApplications(first: 100) {
+                    nodes {
+                        ...DiscountApplication
+                    }
+                }
+                lineItems(first: 100) {
+                    nodes {
+                        ...LineItemFull
+                    }
+                }
+               
             }
-          }
-          lineItems(first: 100) {
-            nodes {
-              ...LineItemFull
-            }
-          }
         }
-      }
     }
   }
 `;
+

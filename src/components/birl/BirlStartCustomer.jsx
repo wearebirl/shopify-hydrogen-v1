@@ -1,21 +1,15 @@
-
-import {Image} from '@shopify/hydrogen';
-import {Link} from "@shopify/hydrogen";
+import {Image, Link} from '@shopify/hydrogen';
 
 import backgroundGuest from "../../assets/birl/background-guest.png";
 import birlLogo from "../../assets/birl/birl-logo.png";
-import arrowBack from "../../assets/birl/Arrow-left.svg";
 import frowardArrow from "../../assets/birl/Arrow-Welcome.svg";
-import {BirlHeading} from "./BirlHeading";
 
 
 export function BirlStartCustomer({Customer, StoreName}) {
 
     if(!Customer) return null
 
-    let customerBlocked = false
-
-    if (!customerBlocked) {
+    if (!Customer.blocked) {
         return (
             <>
                 <div className={"max-w-7xl mx-auto min-h-screen text-black"}>

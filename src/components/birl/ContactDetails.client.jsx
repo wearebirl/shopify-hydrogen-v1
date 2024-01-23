@@ -369,7 +369,7 @@ export function ContactDetails(customer, address){
                         </div>
                         <button className={"float-left cursor-pointer"} onClick={nextStep}>
                             <div className={`px-10 h-10  py-2 ${validate  ? "bg-black" : "bg-gray-400" }   rounded-lg shadow justify-center items-center gap-2 inline-flex`}>
-                                <div className="text-white text-base font-semibold font-['Inter'] leading-normal">Review Details {JSON.stringify(validate)}</div>
+                                <div className="text-white text-base font-semibold font-['Inter'] leading-normal">Review Details</div>
                             </div>
                         </button>
 

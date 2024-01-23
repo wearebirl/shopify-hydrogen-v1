@@ -20,7 +20,9 @@ export async function api() {
 
         return data;
     } catch (error) {
+
         console.log(error);
+        return []
     }
 
 }
