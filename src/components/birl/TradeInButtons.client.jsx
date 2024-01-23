@@ -48,7 +48,7 @@ export function TradeInButtons({item, fulfillmentStatus}){
 
     } else if(item.variant.product.handle !== null && item.variant.product.handle !== "") {
 
-        let birlProduct = fetchSync(`http://localhost:3001/api/StoreFronts/shopify/getProduct`, {
+        let birlProduct = fetchSync(`https://staging.wearebirl.com/api/StoreFronts/shopify/getProduct`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
