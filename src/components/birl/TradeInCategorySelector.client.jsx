@@ -48,13 +48,16 @@ const [error, setError] = useState(null);
                     <div className="w-[435px] text-center text-gray-900 text-2xl font-semibold font-['Inter'] leading-[30px] mx-auto">Choose a category that best matches your item</div>
                     <div className={"mx-auto"}>
                         <div className={"grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 w-full mb-20 mx-auto content-center"}>
-                            {cats.map(( category, index) => (
-                                <div className={`${selectedCategory?.MerchantCategoryID === category.MerchantCategoryID && (" border-1 border-black ")}`} onClick={()=>setSelectedCategory(category)}>
-                                    <CategoryCard category={category} selected={false }/>
+                            {cats.length !== 0 &&
+                                <>
+                                    {cats.map(( category, index) => (
+                                        <div className={`${selectedCategory?.MerchantCategoryID === category.MerchantCategoryID && (" border-1 border-black ")}`} onClick={()=>setSelectedCategory(category)}>
+                                            <CategoryCard category={category} selected={false}/>
 
-                                </div>
-                            ))}
-
+                                        </div>
+                                    ))}
+                                </>
+                            }
 
                         </div>
                     </div>

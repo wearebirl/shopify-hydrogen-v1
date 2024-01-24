@@ -20,19 +20,15 @@ export  function YourItemDetails({item, category, condition, price}){
 
     // Get Item from Shop by Item ID
     let userItem = null;
-
+    let categoryId = 1
     // get data from api projects
 
-    const parhershipData = fetchSync('http://localhost:3000/api/birl/partners/getPartnership', {
+    const partnershipData = fetchSync(`https://staging.wearebirl.com/api/Offsetting/get/${categoryId}`, {
         preload: true,
         headers: {
             'Content-Type': 'application/json',
         },
-        method: 'POST',
-        body: JSON.stringify({
-            "category": category,
-            "item": item
-        })
+        method: 'POST'
     }).json();
 
     //alert(JSON.stringify(parhershipData))
@@ -82,37 +78,37 @@ export  function YourItemDetails({item, category, condition, price}){
 
          userItem = {
             id: 1,
-            name: category[0].categories.CategoryTitle,
-            description: category[0].categories.Description,
-            catgory: category[0].categories.CategoryTitle,
+            name: category.categories?.CategoryTitle,
+            description: category.categories?.Description,
+            catgory: category.categories?.CategoryTitle,
             brand: "ShopBrand",
             priceCondition:
                 [
                     {
                         id: 0,
                         condition: "Like New",
-                        price: category[0].GradeA,
-                        upsell: category[0].GradeAUpsell,
+                        price: category.GradeA,
+                        upsell: category.GradeAUpsell,
                         carbon: 0,
                     },
                     {
                         id: 1,
                         condition: "Good",
-                        price: category[0].GradeB,
-                        upsell: category[0].GradeBUpsell,
+                        price: category.GradeB,
+                        upsell: category.GradeBUpsell,
                         carbon: 0,
                     },
                     {
                         id: 2,
                         condition: "Fair",
-                        price: category[0].GradeC,
-                        upsell: category[0].GradeCUpsell,
+                        price: category.GradeC,
+                        upsell: category.GradeCUpsell,
                         carbon: 0,
                     },
                 ],
-            image: category[0].thumbnail,
-            project: category[0].projectSite,
-            statement: category[0].charityStatement
+            image: category.thumbnail,
+            project: category.projectSite,
+            statement: category.charityStatement
         }
     }
 
@@ -175,26 +171,26 @@ export  function YourItemDetails({item, category, condition, price}){
                                     className="grow shrink basis-0 self-stretch justify-center items-center inline-flex">
                                     <div className="w-80 h-32 relative">
                                         <div className="w-80 h-32 left-0 top-0 absolute bg-white rounded-xl border border-black border-opacity-20 md:border-0 md:border-none md:border-white"/>
-                                        {parhershipData.length > 0 &&
+
                                         <div className="w-72 h-20 left-[20px] top-[20px] absolute">
                                             <img className="w-20 h-20 left-[210px] top-0 absolute"
-                                                 src="https://via.placeholder.com/85x86"/>
+                                                 src={partnershipData.Image}/>
                                             <div className="w-44 h-20 left-0 top-[1px] absolute">
                                                 <div
-                                                    className="w-full left-0 top-0 absolute text-black text-base font-semibold font-['Proxima Nova'] leading-normal">CARBON OFFSETTING
+                                                    className="w-full left-0 top-0 absolute text-black text-base font-semibold font-['Proxima Nova'] leading-normal">{partnershipData.tite}
                                                 </div>
                                                 <div
                                                     className="w-full left-0 top-[24px] absolute text-gray-500 text-sm font-normal font-['Proxima Nova'] leading-normal">Partnered
-                                                    with VARIABLE
+                                                    with {partnershipData.Title}
                                                 </div>
                                                 <div className="w-full h-5 left-0 top-[64px] absolute">
-                                                    <a href={""} className="w-full left-0 top-0 absolute text-black text-sm font-semibold font-['Proxima Nova'] underline leading-tight">
-                                                        What is Make it Wild?
+                                                    <a href={partnershipData.url} target={"_blank"} className="w-full left-0 top-0 absolute text-black text-sm font-semibold font-['Proxima Nova'] underline leading-tight">
+                                                        {partnershipData.Description}
                                                     </a>
                                                 </div>
                                             </div>
                                         </div>
-                                        }
+
                                     </div>
                                 </div>
                             </div>

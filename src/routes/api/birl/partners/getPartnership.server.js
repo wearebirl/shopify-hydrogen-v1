@@ -1,9 +1,9 @@
 export async function api(props) {
 
-
+    let categoryid = props.categoryid;
 
     try {
-        const response = await fetch('http://localhost:3001/api/partnerships/getPartnership',
+        const response = await fetch(`http://localhost:3001/api/Offsetting/get/${categoryid}`,
             {
                 method: 'POST',
                 headers: {
@@ -12,7 +12,7 @@ export async function api(props) {
                 body: JSON.stringify({
                     "merchantId": 5,
                     "merchantApiKey": "TestKey",
-                    "categoryid": 1 | null,
+                    "CategoryId": parseInt(categoryid)
 
                 })
             });

@@ -19,17 +19,7 @@ export function ContactDetails(customer, address){
         }
     }
 
-    const [inputs, setInputs] = useState({
-        fullName:  customerName,
-        email: customerEmail,
-        address: '',
-        city: '',
-        postcode: '',
-        county: '',
-        phoneNumber: '',
-        agreeSend: false,
-        agreeTerms: false,
-    });
+
 
     const [order, setOrder] = useState(null);
 
@@ -133,6 +123,9 @@ export function ContactDetails(customer, address){
 
     }, []);
 
+
+
+
     function validarteText(text) {
 
         if (text.length > 3) {
@@ -151,6 +144,29 @@ export function ContactDetails(customer, address){
 
     }
 
+    const [inputs, setInputs] = useState({
+        fullName:  customer.customer.firstName + " " + customer.customer.lastName,
+        email: customer.customer.email,
+        address: '',
+        city: '',
+        postcode: '',
+        county: '',
+        phoneNumber: '',
+        agreeSend: false,
+        agreeTerms: false,
+    });
+
+    useEffect(() => {
+
+        let cust = customer.customer
+         setInputs({
+             fullName: cust.firstName + " " + cust.lastName,
+             email: cust.email,
+         })
+
+
+    }, [customer]);
+
     return(
 
 
@@ -163,19 +179,19 @@ export function ContactDetails(customer, address){
                         <div className={"flex md:flex-row w-full  "}>
 
                             <div className={"grid grid-cols-1 md:grid-cols-2 w-full float-left"}>
-                                <div className={"w-full md:w-1/2"}>
-
+                                <div className={"w-full md:w-1/2 text-black"}>
+                                    {JSON.stringify(customer.fullName)}
                                     <div>
                                         <label htmlFor="contact-entry-name " className={"text-slate-700 text-sm font-semibold font-['Proxima Nova'] leading-tight float-left"}>Full Name</label>
                                         <input
                                             type="text"
-                                            value={inputs?.fullName}
+                                            value={inputs.fullName}
                                             onChange={handleOnChange}
                                             name={"fullName"}
                                             id={"fullName"}
                                             className={"bg-white rounded-lg shadow border border-gray-300 text-slate-700 text justify-start items-center gap-2 inline-flex"}
 
-                                            placeholder="John Doe" />
+                                        />
                                         {validarteText(!inputs.fullName) &&
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
                                             <g clip-path="url(#clip0_2608_1071)">
