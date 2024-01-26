@@ -13,6 +13,10 @@ export function ReviewAccept({}){
             "message": ""
         })
 
+        const [showModal, setShowModal] = useState(false);
+        const [courerServces, setCourerServces] = useState([]);
+        const [selectedCourier, setSelectedCourier] = useState(0);
+        const [selectedIndex, setSelectedIndex] = useState(0);
 
     useEffect(() => {
         // Update the document title using the browser API
@@ -24,78 +28,56 @@ export function ReviewAccept({}){
 
     function saveOrder() {
 
+        console.log(order)
+
         if(order){
-
-            const data = {
-                "order": {
-                    "customer": {
-                        "fullName": order.customer.fullName,
-                        "phoneNumber": order.customer.phoneNumber,
-                        "email": order.customer.email,
-                        "address": order.customer.address,
-                        "city": order.customer.city,
-                        "county": order.customer.county,
-                        "postcode": order.customer.postcode
-                    },
-                    "item": JSON.stringify(order.item),
-                    "category": JSON.stringify(order.category),
-                    "status": "accepted",
-                    "voucher": JSON.stringify(order.voucher)
-                },
-                "merchantId": 5,
-                "merchantApiKey": "TestKey"
-            }
-
-            console.log(JSON.stringify(data))
-
             try {
-                const responce = fetchSync(`http://localhost:3001/api/StoreFronts/shopify/createOrder`, {
+                const responce = fetchSync(`https://app.wearebirl.com/discounts`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
-                        order: {
-                            customer: {
-                                fullName: order.customer.fullName,
-                                phoneNumber: order.customer.phoneNumber,
-                                email: order.customer.email,
-                                address: order.customer.address,
-                                city: order.customer.city,
-                                county: order.customer.county,
-                                postcode: order.customer.postcode
-                            },
-                            item: JSON.stringify(order.item),
-                            category: JSON.stringify(order.category),
-                            status: "accepted",
-                            voucher: JSON.stringify(order.voucher)
-                        },
-                        merchantId: 5,
-                        merchantApiKey: "TestKey"
+                        "Handle": "lavenham-raydon-jacket-suffolk-navy",
+                        "OrderId": "5349865685067",
+                        "CustomerId": "6630886375499",
+                        "CustomerEmail": "peter@uncover.team",
+                        "CustomerName": "Peter Uncover",
+                        "Shop": "birl-demo.myshopify.com",
+                        "CategoryId": "1",
+                        "Grade": "Like New",
+                        "voucherType": "Normal",
+                        "contact": {
+                            "fullName": "Peter Haig",
+                            "phoneNumber": "7894561230",
+                            "email": "peter@uncover.team",
+                            "address": "9 Newton Pl",
+                            "city": "Glasgow",
+                            "postcode": "G3 7PR",
+                            "county": "Lanarkshire"
+                        }
                     })
-                })
-                    .then(response => response.json())
-                    .then(data => {
-                        console.log('Success:', data);
-                        accepted = true
-                    })
-                    .catch((error) => {
-                        console.error('Error:', error);
-                        accepted = false
-                    });
 
+                }).json()
+
+
+                //alert(JSON.stringify(responce))
+                if(responce.code !== null){
+                    accepted = true
+                } else {
+                    accepted = false
+                }
+
+                //accepted = true
 
             } catch (e) {
-                alert("There was an error saving your order, please try again" + JSON.stringify(e) + " data: " + JSON.stringify(data))
-                console.log(JSON.stringify(data))
+                //alert("There was an error saving your order, please try again" + JSON.stringify(e))
                 accepted = false
             }
         } else {
             accepted = false
         }
-
         return accepted
-
 
     }
 
@@ -116,9 +98,53 @@ export function ReviewAccept({}){
             }
     }
 
+    useEffect(() => {
+        // Update the document title using the browser API
+        try {
+            const couerList = fetchSync("https://dashboard.wearebirl.com/api/Services",
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        "Handle": "lavenham-raydon-jacket-suffolk-navy",
+                        "OrderId": "5349865685067",
+                        "CustomerId": "6630886375499",
+                        "CustomerEmail": "peter@uncover.team",
+                        "CustomerName": "peter Uncover",
+                        "Shop": "birl-demo.myshopify.com",
+                        "CategoryId": "1",
+                        "Grade": "Like New",
+                        "voucherType": "Normal",
+                        "contact": {
+                            "fullName": "Peter Carlyle",
+                            "phoneNumber": "7890000000",
+                            "email": "peter@uncover.team",
+                            "address": "9 Newton Pl",
+                            "city": "Glasgow",
+                            "postcode": "G3 7PR",
+                            "county": "Lanarkshire"
+                        }
+                    })
+                }).json()
+                setCourerServces(couerList)
+        } catch (e) {
+            alert("There was an error getting couriers" + JSON.stringify(e))
+
+        }
 
 
-        return(
+    }, [order]);
+
+
+    function setCourer(courier, index) {
+        setSelectedCourier(courier)
+        setSelectedIndex(index)
+
+    }
+
+    return(
 
                 <div className={"max-w-7xl mx-auto text-center"}>
                     <div className={"grid grid-cols-1 md:grid-cols-2 pr-10"}>
@@ -137,13 +163,16 @@ export function ReviewAccept({}){
                                             </Link>
                                         </div>
                                     </div>
+                                    {error.message.length !== 0 &&
                                     <div className="flex-row ">
                                         <div className="grid grid-cols-2 px-[30px] text-black" >
                                             <div className="flex justify-items-start text-black" >
+
                                             Error: {error.message}
                                             </div>
                                         </div>
                                     </div>
+                                    }
 
                                     <div className="grid grid-cols-1 px-[30px] pb-[30px]" >
                                         {order !== null ?
@@ -246,15 +275,138 @@ export function ReviewAccept({}){
                                 </div>
 
                             </div>
-                            <div className={"float-left"} onClick={()=>nextStep()}>
-                                <div className={`px-10 h-10  py-2 bg-black  mt-2 rounded-lg shadow justify-center items-center gap-2 inline-flex`}>
-                                    <div className="text-white text-base font-semibold font-['Inter'] leading-normal">Confirm trade-in</div>
-                                </div>
-                            </div>
 
+                            <>
+                                <div className={"float-left"} onClick={()=>setShowModal(true)}>
+                                    <div
+                                        className={`px-10 h-10  py-2 bg-black  mt-2 rounded-lg shadow justify-center items-center gap-2 inline-flex`}>
+                                        <div
+                                            className="text-white text-base font-semibold font-['Inter'] leading-normal">Confirm trade-in
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <>
+                                    {showModal &&
+                                    <div className="relative z-10" aria-labelledby="modal-title" role="dialog"
+                                         aria-modal="true">
+
+                                        <div
+                                            className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+
+                                        <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
+
+                                            <div
+                                                className=" min-h-full items-end justify-center text-center sm:items-center sm:p-0 flex flex-col">
+
+                                                <div
+                                                    className="relative transform overflow-hidden rounded-lg  text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+                                                    <div
+                                                        onClick={() => setShowModal(false)}
+                                                        className=" w-fit   mb-[10px] justify-items-center text-center ml-auto underline text-black bg-lime-500 rounded-[10px]">
+
+                                                        <div
+                                                            className="text-black font-semibold text-xs font-['Proxima Nova'] underline leading-normal p-[10px]">Close
+                                                        </div>
+                                                    </div>
+                                                    <div className="bg-white px-4 pb-4 sm:p-6 sm:pb-4">
+                                                    <div className="sm:flex sm:items-start">
+                                                            <div
+                                                                className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left w-full">
+                                                                <div
+                                                                    className="w-80 h-8 mb-2 text-gray-900 text-2xl font-semibold font-['Proxima Nova'] leading-loose">Delivery
+                                                                    Details
+                                                                </div>
+                                                                <div
+                                                                    className="w-full h-6 text-gray-500 text-sm font-normal font-['Proxima Nova'] leading-normal">Choose
+                                                                    which courier you will be using to send your item to
+                                                                    us.
+                                                                </div>
+
+
+                                                                {/* map copurer services */}
+
+                                                                {courerServces.length !== 0 &&
+                                                                    <>
+                                                                    {courerServces.map((service, index) => (
+                                                                        <>
+                                                                            <div id={service.carrierServiceId}
+                                                                                 onClick={() => setCourer(service.carrierServiceId, index)}
+                                                                                 className="w-full h-16 px-4 py-3 bg-white rounded-lg border border-black border-opacity-20 justify-start items-start gap-1 inline-flex mb-3">
+                                                                                <div
+                                                                                    className="grow shrink basis-0 h-10 justify-start items-start gap-3 flex">
+                                                                                    <div className="w-11 h-8 relative">
+                                                                                        <div
+                                                                                            className="w-11 h-8 left-0 top-0 absolute  rounded"/>
+                                                                                        <img
+                                                                                            className="w-11 h-7 left-0 top-[1.17px] absolute rounded"
+                                                                                            src={service.carrierLogoFileUrl}
+                                                                                            onError="this.src=/assets/birl/birl-logo.png'"
+                                                                                        />
+                                                                                    </div>
+                                                                                    <div
+                                                                                        className="grow shrink basis-0 flex-col justify-start items-start gap-0.5 inline-flex">
+                                                                                        <div
+                                                                                            className="self-stretch h-10 flex-col justify-start items-start flex">
+                                                                                            <div
+                                                                                                className="self-stretch text-slate-700 text-sm font-medium font-['Inter'] leading-tight">{service.carrierName}
+                                                                                            </div>
+                                                                                            <div
+                                                                                                className="self-stretch text-gray-500 text-sm font-normal font-['Inter'] leading-tight">{service.serviceName}
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+
+
+
+
+
+                                                                            <div
+                                                                                className={`w-4 h-4  pt-[1px] pl-[1px] flex rounded border ${selectedIndex === index ? ("bg-lime-300 border-lime-500 bg-opacity-5") : ("bg-white")}`}>
+                                                                                {selectedIndex === index && (
+                                                                                    <svg
+                                                                                        xmlns="http://www.w3.org/2000/svg"
+                                                                                        width="12" height="12"
+                                                                                        viewBox="0 0 12 12" fill="none">
+                                                                                        <path d="M10 3L4.5 8.5L2 6"
+                                                                                              stroke="#2EA141"
+                                                                                              stroke-width="1.6666"
+                                                                                              stroke-linecap="round"
+                                                                                              stroke-linejoin="round"/>
+                                                                                    </svg>
+
+                                                                                )}
+                                                                            </div>
+                                                                            </div>
+                                                                        </>
+                                                                    ))}
+                                                                    </>
+                                                                }
+                                                                {/* map copurer services */}
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
+
+                                                    <button type="button" onClick={()=>nextStep()}
+                                                                className="mt-3 inline-flex w-full justify-center rounded-md bg-black text-white px-3 py-2 text-sm font-semibold shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-900 hover:text-white sm:mt-0 sm:w-auto">Get my Credit
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    }
+                                </>
+
+                            </>
                         </div>
-                        <div className={"col-span-1"}>
-                            {order !== null && order.length !== 0 && (
+                        <div className={"col-span-1 ml-2"}>
+                        {order !== null && order.length !== 0 && (
 
                             <YourItemDetails item={order.item }  category={order.category} condition={order.condition} price={2}></YourItemDetails>
 

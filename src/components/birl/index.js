@@ -15,7 +15,7 @@ export {ContactDetails} from './ContactDetails.client';
 export {Completed} from './Completed.client';
 export {ProductCTA} from './ProductCTA';
 export {ProductWidget} from './ProductWidget';
-export {ReviewAccept} from './ReviewAccept.client';
+export {ReviewAccept} from './reviewAccept.client';
 export {TradeInButtons} from './TradeInButtons.client';
 export {BirlTradeInButton} from './BirlTradeInButton.client';
 export {TradeInCategorySelector} from './TradeInCategorySelector.client';
