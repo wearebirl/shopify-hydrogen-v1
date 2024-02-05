@@ -78,9 +78,9 @@ export  function YourItemDetails({item, category, condition, price}){
 
          userItem = {
             id: 1,
-            name: category.categories?.CategoryTitle,
-            description: category.categories?.Description,
-            catgory: category.categories?.CategoryTitle,
+            name: category.CategoryTitle,
+            description: category.Description,
+            catgory: category.CategoryTitle,
             brand: "ShopBrand",
             priceCondition:
                 [
@@ -114,98 +114,44 @@ export  function YourItemDetails({item, category, condition, price}){
 
     if (true) {
         return (
+            console.log(userItem),
             <>
+                <div className={"w-[max-content] rounded-[20px] border border-gray-300 p-10"}>
+                    <h1 className="text-black text-2xl font-semibold font-Inter leading-loose text-left mb-[20px]">Your item</h1>
+                    <div className="flex">
+                        <img src="https://via.placeholder.com/185" alt="Placeholder" className="w-[185px] h-[185px] rounded-lg"/>
+                        <div className="flex flex-col justify-between ml-[40px]">
+                            
+                            <div>
+                                <div className="text-black text-base font-bold font-Inter text-left mb-[5px]">CATEGORY</div>
+                                <p className="text-sm text-[#667085] text-left">Shirts</p>
+                            </div>
+                            
+                            <div>
+                                <div className="text-black text-base font-bold font-Inter text-left mb-[5px]">BRAND</div>
+                                <p className="text-sm text-[#667085] text-left">ShopBrand</p>
+                            </div>
+
+                            <div>
+                                <div className="text-black text-base font-bold font-Inter text-left mb-[5px]">CONDITION</div>
+                                <p className="text-sm text-[#667085] text-left">{userItem.priceCondition[condition].condition}</p>
+                            </div>
 
 
-            <div className={"w-full rounded-[20px] border border-gray-300 p-[20px]"}>
-                <div className="w-96 text-gray-900 text-2xl font-semibold font-['Inter'] leading-loose">Your item</div>
-                <div className="grid grid-cols-2">
-                    <div className={"w-1/3"}>
-                        <img className={"w-full rounded-[10px]"} src={userItem.image} alt={userItem.name}/>
-                    </div>
-                    <div className={"w-2/3"}>
-                        <div className="text-black text-base font-semibold font-['Inter'] leading-normal">CATEGORY</div>
-                        <div
-                            className=" text-gray-500 text-base font-normal font-['Inter'] leading-normal">{userItem.name}</div>
-                        <div className="text-black text-base font-semibold font-['Inter'] leading-normal">BRAND</div>
-                        <div
-                            className="text-gray-500 text-base font-normal font-['Inter'] leading-normal">{userItem.brand}</div>
-                        <div className="text-black text-base font-semibold font-['Inter'] leading-normal">CONDITION
                         </div>
-                        <div
-                            className="text-gray-500 text-base font-normal font-['Inter'] leading-normal">{userItem.priceCondition[condition].condition}</div>
                     </div>
 
+                    <h1 className="text-black text-2xl font-semibold font-Inter leading-loose text-left mt-[30px]">Your Credit</h1>
+                    
+                    <h3 className="text-black text-base font-semibold font-Inter leading-loose text-left">Amount</h3>
+
+                    <p className="text-black text-xl font-semibold font-Inter leading-loose text-left mb-[20px]">
+                        Not Selected
+                    </p>
+                    
                 </div>
-                <div className="text-gray-900 text-2xl font-semibold font-['Inter'] leading-loose">Your Credit</div>
-                <div className="grid grid-cols-2">
-                    <div className={"w-1/2"}>
-                        <div className={"w-full"}>
-                            <div
-                                className="w-full text-black text-base font-semibold font-['Inter'] leading-normal">AMOUNT
-                            </div>
-                            <div
-                                className="w-full text-gray-500 text-base font-normal font-['Inter'] leading-normal">£{userItem.priceCondition[condition].price} DAWN
-                                Store credit*
-                            </div>
-                            {userItem.priceCondition[condition].carbon >= 1 &&
-                                <>
-                                    <div
-                                        className="w-full text-black text-base font-semibold font-['Inter'] leading-normal">CARBON
-                                        CAPTURE
-                                    </div>
-                                    <div
-                                        className="w-full text-gray-500 text-base font-normal font-['Inter'] leading-normal">{userItem.priceCondition[condition].carbon}kg
-                                        of CO2
-                                    </div>
-                                </>
-
-
-                            }
-                        </div>
-                    </div>
-                    <div className={"w-1/2"}>
-                        <div className={"w-fit"}>
-                            <div className="w-80 h-44 pt-11 justify-center items-center inline-flex">
-                                <div
-                                    className="grow shrink basis-0 self-stretch justify-center items-center inline-flex">
-                                    <div className="w-80 h-32 relative">
-                                        <div className="w-80 h-32 left-0 top-0 absolute bg-white rounded-xl border border-black border-opacity-20 md:border-0 md:border-none md:border-white"/>
-
-                                        <div className="w-72 h-20 left-[20px] top-[20px] absolute">
-                                            <img className="w-20 h-20 left-[210px] top-0 absolute"
-                                                 src={partnershipData.Image}/>
-                                            <div className="w-44 h-20 left-0 top-[1px] absolute">
-                                                <div
-                                                    className="w-full left-0 top-0 absolute text-black text-base font-semibold font-['Proxima Nova'] leading-normal">{partnershipData.tite}
-                                                </div>
-                                                <div
-                                                    className="w-full left-0 top-[24px] absolute text-gray-500 text-sm font-normal font-['Proxima Nova'] leading-normal">Partnered
-                                                    with {partnershipData.Title}
-                                                </div>
-                                                <div className="w-full h-5 left-0 top-[64px] absolute">
-                                                    <a href={partnershipData.url} target={"_blank"} className="w-full left-0 top-0 absolute text-black text-sm font-semibold font-['Proxima Nova'] underline leading-tight">
-                                                        {partnershipData.Description}
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-            </div>
-
-
-                </>
+            </>
         )
-    } else {
-        return null
     }
 
 }

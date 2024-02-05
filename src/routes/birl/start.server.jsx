@@ -40,8 +40,6 @@ export default function Account({response}) {
 
     }
 
-
-
     const {data} = useShopQuery({
         query: CUSTOMER_QUERY,
         variables: {

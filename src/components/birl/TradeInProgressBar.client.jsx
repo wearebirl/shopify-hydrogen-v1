@@ -46,7 +46,7 @@ export  function TradeInProgressBar({currentStep}) {
                 <div className="solid-line"></div>
                 {steps.map((step, index) => {
                     return(
-                    <div className="timeline-status">
+                    <div key={index} className="timeline-status">
                         <div className={`indicator  ${index >= currentStep-1 && "inactive"} ${index > currentStep-1 && " indicator-disabled"} `}>
                             <svg width="14px" height="14px" viewBox="0 0 24 24" fill="none"
                                  xmlns="http://www.w3.org/2000/svg">
@@ -55,8 +55,8 @@ export  function TradeInProgressBar({currentStep}) {
                                       fill="#ffffff"/>
                             </svg>
                         </div>
-                        <span className="desktop-label">{step.title}</span>
-                        <span className="mobile-label">{step.ShortTitle}</span>
+                        <span className="desktop-label font-Inter">{step.title}</span>
+                        <span className="mobile-label font-Inter">{step.ShortTitle}</span>
                     </div>
 
                     )

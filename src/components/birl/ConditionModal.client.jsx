@@ -22,7 +22,7 @@ export function ConditionModal () {
                 <div className=" absolute w-[500px]">
                     <div className="w-full h-5 left-0 top-0 absolute">
                         <div className="left-[1px] top-0 absolute text-black text-sm font-medium font-['Inter']">
-                            <div className={"flex flex-row underline"}>
+                            <div className={"flex flex-row underline "}>
                                 How to choose the right condition &nbsp;
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 100 100">
                                     <circle cx="50" cy="50" r="45" fill="none" stroke="black" stroke-width="2" />

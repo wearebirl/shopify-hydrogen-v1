@@ -1,19 +1,16 @@
 
 export function CategoryCard({category, selectedCategory}){
     return(
-        <div className={"w-[90%] h-[300px] bg-white"}>
+        <button className={"max-w-[135px] min-w-[135px] w-full cursor-pointer outline-none"}>
 
-            <div className={`relative content-center h-[250px] w[250px] ${selectedCategory && "border border-2  border-black"}`}>
-                <img src={category.thumbnail} alt={category.categories?.CategoryTitle }  className={"w-full h-full object-cover"}/>
-                <div className={"rounded-tr-[20px] rounded-br-[20px] absolute bg-[#96D610] w-fit px-4 left-0 bottom-[5px] text-white"}>
-                    £{category.GradeA}
-                </div>
-                <div>
-                    <p className={"text-black text-[14px] font-bold"}>{category.categories?.CategoryTitle }</p>
+            <div className={`relative content-center h-[max-content] max-w-[135px] ${selectedCategory && "border border-2  border-black"}`}>
+                <img src={category.thumbnail} alt={category.categories?.CategoryTitle }  className={"max-w-[135px] max-h-[128px] rounded-t-[5px] w-full h-full object-cover"}/>
+                <div class="bg-[#96D610] w-full rounded-b-[5px] font-Inter font-bold text-white text-sm">
+                    <span>GET £{category.GradeA}</span>
                 </div>
 
             </div>
 
-        </div>
+        </button>
     )
 }

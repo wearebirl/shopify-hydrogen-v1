@@ -64,12 +64,17 @@ export function ConditionSelectionCategory({item, category}){
     <div className={"max-w-7xl mx-auto text-center text-black"}>
         <div className={"grid grid-cols-1 md:grid-cols-2"}>
             <div className={"col-span-1"}>
-                <div className="w-full text-black text-base font-normal font-['Inter']">Please choose one of the following options that best matches your item. </div>
-                <div className="w-[630px] h-[58px] px-5 py-2.5 bg-stone-50 rounded-[10px] justify-start items-start gap-2.5 inline-flex">
-                    <div className="w-[577px] text-black text-base font-semibold font-['Inter']">The condition of your item does not effect the price we pay, it is to ensure your item reaches the best location for either re-selling or recycling</div>
-                </div>
+                <div className="w-full text-black text-base font-normal font-Inter text-left">Select the item condition below that best describes your item.</div>
 
-                <ConditionModal></ConditionModal>
+                <p className="flex items-center mt-[15px] cursor-pointer">How to choose the right condition &nbsp;
+                                    
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="45" fill="none" stroke="black" stroke-width="2" />
+                    <text x="50" y="70" text-anchor="middle" font-size="60" fill="black">?</text>
+                </svg>
+
+                </p>
+
                 <div className={"mt-[20px] mr-[20px]"}>
 
                     {conditions.map((condition, index) => (
@@ -100,7 +105,7 @@ export function ConditionSelectionCategory({item, category}){
                     ))}
                     <button className={"float-left"} onClick={({response})=>nextStep({response})}>
                         <div className={`px-10 h-10  py-2 ${selectedCondition !== null ? "bg-black" : "bg-gray-400" }   rounded-lg shadow justify-center items-center gap-2 inline-flex`}>
-                            <div className="text-white text-base font-semibold font-['Inter'] leading-normal">Confirm condition</div>
+                            <div className="text-white text-base font-semibold font-Inter leading-normal">Confirm condition</div>
                         </div>
                     </button>
                 </div>

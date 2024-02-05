@@ -21,18 +21,18 @@ export function ConditionSelection({item, category, price}){
         {
             id: 0,
             name: "Like New",
-            description: "Little to no signs of wear. The item looks and feels almost new",
+            description: "Little to no signs of wear. The item looks and feels almost new.",
 
         },
         {
             id: 1,
-            name: "Good",
+            name: "Used - Good",
             description: "Minor signs of wear, but no major flaws like stains or holes.",
         },
         {
             id: 2,
-            name: "Poor",
-            description: "Visible signs of wear and flaws, minor stains, light pilling, or small holes.",
+            name: "Used - Fair",
+            description: "Visible signs of wear and flaws, minor stains, light piling, or small holes.",
         },
     ]
 
@@ -64,10 +64,7 @@ export function ConditionSelection({item, category, price}){
     <div className={"max-w-7xl mx-auto text-center"}>
         <div className={"grid grid-cols-1 md:grid-cols-2"}>
             <div className={"col-span-1"}>
-                <div className="w-full text-black text-base font-normal font-['Inter']">Please choose one of the following options that best matches your item. </div>
-                <div className="w-[630px] h-[58px] px-5 py-2.5 bg-stone-50 rounded-[10px] justify-start items-start gap-2.5 inline-flex">
-                    <div className="w-[577px] text-black text-base font-semibold font-['Inter']">The condition of your item does not effect the price we pay, it is to ensure your item reaches the best location for either re-selling or recycling</div>
-                </div>
+                <div className="w-full text-black text-base font-normal font-Inter text-left">Select the item condition below that best describes your item.</div>
                 <ConditionModal></ConditionModal>
                 <div className={"mt-[20px] mr-[20px]"}>
 
@@ -99,7 +96,7 @@ export function ConditionSelection({item, category, price}){
                     ))}
                     <button className={"float-left"} onClick={({response})=>nextStep({response})}>
                         <div className={`px-10 h-10  py-2 ${selectedCondition !== null ? "bg-black" : "bg-gray-400" }   rounded-lg shadow justify-center items-center gap-2 inline-flex`}>
-                            <div className="text-white text-base font-semibold font-['Inter'] leading-normal">Confirm condition</div>
+                            <div className="text-white text-base font-semibold font-Inter leading-normal">Confirm condition</div>
                         </div>
                     </button>
                 </div>

@@ -34,6 +34,15 @@ export default function Account({response}) {
 
     if (!customerAccessToken) return response.redirect('/account/login');
 
+        const ShopQuery = gql`
+        query ShopQuery($language: LanguageCode!, $country: CountryCode!) {
+            shop {
+                name
+                description
+            }
+        }
+    `;
+
     const {data} = useShopQuery({
         query: CUSTOMER_QUERY,
         variables: {
@@ -66,10 +75,7 @@ export default function Account({response}) {
         customer.defaultAddress.id.lastIndexOf('?'),
     );
 
-
-
-
-    const cats = fetchSync('http://localhost:3000/api/birl/categories', {
+    const cats = fetchSync('http://localhost:3001/api/Category/list', {
         preload: true,
     }).json();
 
@@ -134,6 +140,11 @@ function AuthenticatedAccount({
 
     return (
         <Layout>
+
+            <link rel="preconnect" href="https://fonts.googleapis.com" />
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
+            <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+
             <Suspense>
                 <Seo type="noindex" data={{title: 'Account details'}} />
             </Suspense>
@@ -141,7 +152,7 @@ function AuthenticatedAccount({
             <BirlHeading headingText={"Select a category"}></BirlHeading>
             {customer.blocked ? <div className="text-center text-2xl text-red-500">
                 Sorry, something is wrong with your account. Please contact Birl at hello@wearebirl.co.uk </div> : <>
-            <   TradeInProgressBar currentStep={1}></TradeInProgressBar>
+                <TradeInProgressBar currentStep={1}></TradeInProgressBar>
                 <TradeInCategorySelector cats={cats}></TradeInCategorySelector>
             </>
             }
@@ -302,3 +313,13 @@ const CUSTOMER_UPDATE_MUTATION = gql`
         }
     }
 `;
+
+const SHOP_QUERY = gql`
+  query ShopInfo {
+    shop {
+      name
+      description
+    }
+  }
+`;
+
