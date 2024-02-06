@@ -19,7 +19,7 @@ import {Layout, ProductSwimlane} from '~/components/index.server';
 import BirlBanner from "../../../components/birl/BirlBanner";
 import {BirlStart, CustomerPortal} from "../../../components/birl";
 
-export default function BirlWelcome({response}) {
+export default function BirlWelcome({response, params}) {
     response.cache(CacheNone());
     useServerAnalytics({
         shopify: {
@@ -28,6 +28,7 @@ export default function BirlWelcome({response}) {
         },
     });
 
+    console.log('params: ', params);
 
 
   const {

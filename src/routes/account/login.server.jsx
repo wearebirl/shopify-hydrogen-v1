@@ -1,11 +1,11 @@
 import {Suspense} from 'react';
-import {useShopQuery, CacheLong, CacheNone, Seo, gql} from '@shopify/hydrogen';
+import {useShopQuery, CacheLong, Seo, gql} from '@shopify/hydrogen';
 
 import {AccountLoginForm} from '~/components';
 import {Layout} from '~/components/index.server';
 
 export default function Login({response}) {
-  response.cache(CacheNone());
+  // response.cache(CacheNone());
 
   const {
     data: {
