@@ -11,7 +11,7 @@ export async function api() {
                 },
                 body: JSON.stringify({
                     "merchantId": 5,
-                    "merchantApiKey": "TestKey",
+                    "merchantApiKey": "TestKey"
                 })
             });
 

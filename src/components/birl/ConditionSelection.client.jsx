@@ -1,21 +1,12 @@
 import {ConditionModal} from "./ConditionModal.client";
 import {YourItemDetails} from "./YourItemDetails.client";
-import {useState} from "react";
-
-
+import {useEffect, useState} from "react";
 
 export function ConditionSelection({item, category, price}){
 
+    const [selectedCondition, setSelectedCondition] = useState(0);
 
-   //Get item from the URL
-    // find the item and get the vaues for conditions
-
-    // update userringerdace with the item and the condition
-
-
-    // On Save Add this to the order
-
-
+    const [currentOrder, setCurrentOrder] = useState(null);
 
     const conditions = [
         {
@@ -36,8 +27,6 @@ export function ConditionSelection({item, category, price}){
         },
     ]
 
-    const [selectedCondition, setSelectedCondition] = useState(0);
-
     function setCustomerChosenCondition(condition) {
 
         setSelectedCondition(condition);
@@ -49,12 +38,13 @@ export function ConditionSelection({item, category, price}){
 
             //add to birlBasket in local storage
             localStorage.setItem('birlOrder', JSON.stringify({
-                item: item,
-                category: category,
+                item,
+                category,
                 condition: selectedCondition,
                 salePrice: price
             }));
 
+            
             return window.location.replace(`/birl/trade-in/value/${item.ProductId}`)
 
         }
@@ -78,7 +68,7 @@ export function ConditionSelection({item, category, price}){
                                         <div className={`w-4 h-4  pt-[1px] pl-[1px] flex rounded border ${selectedCondition === index ? ("bg-lime-300 border-lime-500 bg-opacity-5") : ("bg-white")}`} >
                                             {selectedCondition === index && (
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
-                                                    <path d="M10 3L4.5 8.5L2 6" stroke="#2EA141" stroke-width="1.6666" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    <path d="M10 3L4.5 8.5L2 6" stroke="#2EA141" strokeWidth="1.6666" strokeLinecap="round" strokeLinejoin="round"/>
                                                 </svg>
 
                                             )}

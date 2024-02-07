@@ -4,7 +4,7 @@ import arrowBack from "../../assets/birl/Arrow-left.svg";
 
 export function BirlBanner() {
     return (
-        <div className="flex justify-between items-center max-w-7xl mx-auto h-[100px] my-[20px]">
+        <div className="flex justify-between items-center max-w-[1280px] mx-auto w-full px-[20px] h-[100px] my-[20px]">
             <a href="javascript: history.back()" className="flex items-center">
                 <Image loading="eager" src={arrowBack} className="arrow-welcome" width="15" height="15" />
                 <span className="font-semibold ml-2">Back</span>

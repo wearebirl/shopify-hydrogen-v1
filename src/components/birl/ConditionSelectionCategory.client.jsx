@@ -1,6 +1,6 @@
 import {ConditionModal} from "./ConditionModal.client";
 import {YourItemDetails} from "./YourItemDetails.client";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 
 
@@ -19,22 +19,21 @@ export function ConditionSelectionCategory({item, category}){
         {
             id: 1,
             grade: "B",
-            name: "Good",
+            name: "Used - Good",
             description: "Minor signs of wear, but no major flaws like stains or holes.",
 
         },
         {
             id: 2,
             grade: "C",
-            name: "Poor",
+            name: "Used - Fair",
             description: "Visible signs of wear and flaws, minor stains, light pilling, or small holes.",
 
         },
     ]
 
-
-
     const [selectedCondition, setSelectedCondition] = useState(0);
+    const [currentOrder, setCurrentOrder] = useState(null);
 
     function setCustomerChosenCondition(condition) {
 
@@ -44,12 +43,12 @@ export function ConditionSelectionCategory({item, category}){
     function nextStep({response}) {
         if (selectedCondition !== null) {
 
+            let order = JSON.parse(localStorage.getItem('birlOrder'))
 
             //add to birlBasket in local storage
             localStorage.setItem('birlOrder', JSON.stringify({
-                item: item,
-                category: category,
-                condition: selectedCondition,
+                ...order,
+                condition: conditions[selectedCondition],
             }));
 
 
@@ -60,17 +59,21 @@ export function ConditionSelectionCategory({item, category}){
         }
     }
 
+    useEffect(() => {
+        setCurrentOrder(JSON.parse(localStorage.getItem('birlOrder')))
+    }, [])
+
     return(
-    <div className={"max-w-7xl mx-auto text-center text-black"}>
-        <div className={"grid grid-cols-1 md:grid-cols-2"}>
-            <div className={"col-span-1"}>
+    <div className={"max-w-[1280px] px-[20px] w-full mx-auto text-center text-black"}>
+        <div className={"flex sm-max:flex-col"}>
+            <div>
                 <div className="w-full text-black text-base font-normal font-Inter text-left">Select the item condition below that best describes your item.</div>
 
                 <p className="flex items-center mt-[15px] cursor-pointer">How to choose the right condition &nbsp;
                                     
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 100 100">
-                    <circle cx="50" cy="50" r="45" fill="none" stroke="black" stroke-width="2" />
-                    <text x="50" y="70" text-anchor="middle" font-size="60" fill="black">?</text>
+                    <circle cx="50" cy="50" r="45" fill="none" stroke="black" strokeWidth="2" />
+                    <text x="50" y="70" textAnchor="middle" fontSize="60" fill="black">?</text>
                 </svg>
 
                 </p>
@@ -79,7 +82,7 @@ export function ConditionSelectionCategory({item, category}){
 
                     {conditions.map((condition, index) => (
 
-                        <div className={`w-full group mb-[20px] h-20 p-4  rounded-lg border border-black border-opacity-20 justify-start items-start inline-flex hover:border-lime-500 ${selectedCondition === index && (" bg-lime-300 bg-opacity-5")} `}
+                        <div key={index} className={`w-full group mb-[20px] h-20 p-4 cursor-pointer rounded-lg border border-black border-opacity-20 justify-start items-start inline-flex hover:border-lime-500 ${selectedCondition === index && (" bg-lime-300 bg-opacity-5")} `}
                              onClick={()=>setCustomerChosenCondition(index)}>
                             <div className="grow shrink basis-0 h-10 justify-start items-start gap-2 flex">
                                 <div className="pt-0.5 justify-start items-start flex">
@@ -87,7 +90,7 @@ export function ConditionSelectionCategory({item, category}){
                                         <div className={`w-4 h-4  pt-[1px] pl-[1px] flex rounded border ${selectedCondition === index ? ("bg-lime-300 border-lime-500 bg-opacity-5") : ("bg-white")}`} >
                                             {selectedCondition === index && (
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
-                                                    <path d="M10 3L4.5 8.5L2 6" stroke="#2EA141" stroke-width="1.6666" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    <path d="M10 3L4.5 8.5L2 6" stroke="#2EA141" strokeWidth="1.6666" strokeLinecap="round" strokeLinejoin="round"/>
                                                 </svg>
 
                                             )}
@@ -95,8 +98,8 @@ export function ConditionSelectionCategory({item, category}){
                                     </div>
                                 </div>
                                 <div className="grow shrink basis-0 flex-col justify-start text-left items-start inline-flex">
-                                    <div className="self-stretch text-slate-700 text-sm font-semibold font-['Proxima Nova'] leading-tight">{condition.name}</div>
-                                    <div className="self-stretch text-gray-500 text-sm font-normal font-['Proxima Nova'] leading-snug"> {condition.description}</div>
+                                    <div className="self-stretch text-slate-700 text-sm font-semibold font-Inter leading-tight">{condition.name}</div>
+                                    <div className="self-stretch text-gray-500 text-sm font-normal font-Inter leading-snug"> {condition.description}</div>
                                 </div>
                             </div>
 
@@ -111,8 +114,8 @@ export function ConditionSelectionCategory({item, category}){
                 </div>
 
             </div>
-            <div className={"col-span-1"}>
-                <YourItemDetails item={null} category={category} condition={selectedCondition}></YourItemDetails>
+            <div className="sm-max:mt-[20px]">
+                <YourItemDetails item={null} category={currentOrder != null ? currentOrder?.category : null} condition={conditions[selectedCondition]}></YourItemDetails>
             </div>
 
         </div>

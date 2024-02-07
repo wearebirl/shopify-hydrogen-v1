@@ -75,6 +75,7 @@ export default function Account({response}) {
         customer.defaultAddress.id.lastIndexOf('?'),
     );
 
+    console.log(`category id: `,categoryId)
 
     const categoryPries = fetchSync('http://localhost:3001/api/StoreFronts/shopify/getCategory',
         {
@@ -90,9 +91,6 @@ export default function Account({response}) {
 
         }
         ).json()
-
-
-
 
     return (
         <>

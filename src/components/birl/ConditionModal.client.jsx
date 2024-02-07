@@ -25,8 +25,8 @@ export function ConditionModal () {
                             <div className={"flex flex-row underline "}>
                                 How to choose the right condition &nbsp;
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 100 100">
-                                    <circle cx="50" cy="50" r="45" fill="none" stroke="black" stroke-width="2" />
-                                    <text x="50" y="70" text-anchor="middle" font-size="60" fill="black">?</text>
+                                    <circle cx="50" cy="50" r="45" fill="none" stroke="black" strokeWidth="2" />
+                                    <text x="50" y="70" textAnchor="middle" fontSize="60" fill="black">?</text>
                                 </svg>
 
                             </div>
@@ -54,8 +54,8 @@ export function ConditionModal () {
                                     </div>
                                     <div className="w-7 h-7 bg-white" />
                                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 100 100" onClick={closeModal}>
-                                        <line x1="10" y1="10" x2="90" y2="90" stroke="black" stroke-width="10" />
-                                        <line x1="10" y1="90" x2="90" y2="10" stroke="black" stroke-width="10" />
+                                        <line x1="10" y1="10" x2="90" y2="90" stroke="black" strokeWidth="10" />
+                                        <line x1="10" y1="90" x2="90" y2="10" stroke="black" strokeWidth="10" />
                                     </svg>
 
                                 </div>
