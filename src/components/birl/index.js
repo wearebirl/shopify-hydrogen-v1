@@ -10,7 +10,7 @@ export {CartWidget} from './CartWidget';
 export {ConditionModal} from './ConditionModal.client';
 export {ConditionSelection} from './ConditionSelection.client';
 export {ConditionSelectionCategory} from './ConditionSelectionCategory.client';
-export {CustomerPortal} from './CustomerPortal.client';
+export {CustomerPortal} from './CustomerPortalOrder.client';
 export {ContactDetails} from './ContactDetails.client';
 export {Completed} from './Completed.client';
 export {ProductCTA} from './ProductCTA';

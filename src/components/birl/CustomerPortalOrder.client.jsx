@@ -8,14 +8,17 @@ import {Link} from '@shopify/hydrogen';
 import { SearchIcon } from '../icons/SearchIcon';
 import { PRODUCT_CARD_FRAGMENT } from '../../lib';
 import { AnnouncementBar } from './AnnouncementBar.jsx';
-import { OrderTable } from './tables/OrderTable';
+import { ProductTable } from './tables/ProductTable';
+import AnnouncementModal from './AnnouncementModal';
 
 
 
-export function CustomerPortal(customer) {
+
+export function CustomerPortalOrder(customer) {
   
   return (
     <div className="bg-white p-10">
+      <AnnouncementModal onClose={() => null}/>
       <div>
         <span onClick={() => console.log(customer)} className="w-[774px] text-gray-900 text-3xl font-medium leading-[38px]">
           Account
@@ -42,7 +45,7 @@ export function CustomerPortal(customer) {
         </div>
         <div className=" border rounded-lg overflow-x-auto">
          {/* <OrderTable /> */}
-         <OrderTable/>
+         <ProductTable/>
         </div>
       </div>
       <div className="w-[555px] h-[34px] px-[19px] py-2 mix-blend-multiply bg-green-600 rounded-2xl border border-white justify-center items-center gap-4 inline-flex">
