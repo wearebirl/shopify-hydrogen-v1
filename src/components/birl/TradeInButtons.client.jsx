@@ -1,6 +1,6 @@
 import {fetchSync, Link, Money} from "@shopify/hydrogen";
 import {Text, PageHeader, Heading} from '~/components';
-import BirlTradeInButton from "./birlTradeInButton.client";
+import {BirlTradeInButton} from "./birlTradeInButton.client";
 
 export function TradeInButtons({item, fulfillmentStatus}){
 

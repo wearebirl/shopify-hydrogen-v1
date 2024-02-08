@@ -15,6 +15,8 @@ import {
 } from '@shopify/hydrogen';
 import {HeaderFallback, EventsListener} from '~/components';
 import {NotFound} from '~/components/index.server';
+import {AddToCartModal} from './components/birl/addToCartModal/AddToCartModal.client';
+import {DrawerProvider} from './components/global/Drawer.client';
 
 function App({request}) {
   const pathname = new URL(request.normalizedUrl).pathname;
@@ -34,6 +36,7 @@ function App({request}) {
   return (
     <Suspense fallback={<HeaderFallback isHome={isHome} />}>
       <EventsListener />
+        <DrawerProvider>
       <ShopifyProvider countryCode={countryCode}>
         <Seo
           type="defaultSeo"
@@ -45,20 +48,23 @@ function App({request}) {
           }}
         />
         <CartProvider
+          // onLineAdd={() => console.log("onLineAdd : ")}
           countryCode={countryCode}
           customerAccessToken={customerAccessToken}
         >
-          <Router>
-            <FileRoutes
-              basePath={countryCode ? `/${countryCode}/` : undefined}
-            />
-            <Route path="*" page={<NotFound />} />
-          </Router>
+            <Router>
+            <AddToCartModal />
+              <FileRoutes
+                basePath={countryCode ? `/${countryCode}/` : undefined}
+              />
+              <Route path="*" page={<NotFound />} />
+            </Router>
         </CartProvider>
         <PerformanceMetrics />
         {import.meta.env.DEV && <PerformanceMetricsDebug />}
         <ShopifyAnalytics cookieDomain="hydrogen.shop" />
       </ShopifyProvider>
+          </DrawerProvider>
     </Suspense>
   );
 }

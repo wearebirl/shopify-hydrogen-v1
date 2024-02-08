@@ -1,7 +1,7 @@
 
 
 
-export default function BirlTradeInButton(){
+export function BirlTradeInButton(){
 
     function next(){
         console.log('next')

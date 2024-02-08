@@ -21,6 +21,7 @@ import {
   Section,
   Text,
 } from '~/components';
+import { AnnouncementBar } from '../../components/birl';
 
 export default function Product() {
   const {handle} = useRouteParams();
@@ -79,6 +80,7 @@ export default function Product() {
       <Suspense>
         <Seo type="product" data={product} />
       </Suspense>
+      <AnnouncementBar />
       <ProductOptionsProvider data={product}>
         <Section padding="x" className="px-0">
           <div className="grid items-start md:gap-6 lg:gap-20 md:grid-cols-2 lg:grid-cols-3">

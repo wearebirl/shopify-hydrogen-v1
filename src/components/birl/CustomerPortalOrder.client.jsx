@@ -2,15 +2,15 @@
 import birlLogo from '../../assets/birl/birl-logo.png';
 import arrowRight from '../../assets/birl/arrow-right.png';
 import styles from '../../assets/birl/trade-in-portal.css';
-import {BirlIcon} from '../icons/BirlIcon';
+import {BirlIconLight} from '../icons/BirlIconLight';
 import {FilterIcon} from '../icons/FilterIcon';
 import {Link} from '@shopify/hydrogen';
 import { SearchIcon } from '../icons/SearchIcon';
 import { PRODUCT_CARD_FRAGMENT } from '../../lib';
-import { AnnouncementBar } from './AnnouncementBar.jsx';
 import { ProductTable } from './tables/ProductTable';
 import AnnouncementModal from './AnnouncementModal';
-
+import {AddToCartModal} from './addToCartModal/AddToCartModal.client';
+import { CartModalPopup } from '.';
 
 
 
@@ -18,7 +18,9 @@ export function CustomerPortalOrder(customer) {
   
   return (
     <div className="bg-white p-10">
-      <AnnouncementModal onClose={() => null}/>
+      {/* <AnnouncementModal onClose={() => null}/> */}
+      <AddToCartModal  />
+      {/* <CartModalPopup storeName={'birl'} /> */}
       <div>
         <span onClick={() => console.log(customer)} className="w-[774px] text-gray-900 text-3xl font-medium leading-[38px]">
           Account
@@ -51,7 +53,7 @@ export function CustomerPortalOrder(customer) {
       <div className="w-[555px] h-[34px] px-[19px] py-2 mix-blend-multiply bg-green-600 rounded-2xl border border-white justify-center items-center gap-4 inline-flex">
         <div className="grow shrink basis-0 self-stretch relative"></div>
         <div className="justify-start items-center gap-1 flex">
-          <BirlIcon />
+          <BirlIconLight />
           <div>
             <span className="text-white text-sm font-medium  leading-[18px]">
               Have a DAWN item you’ve bought from elsewhere{' '}

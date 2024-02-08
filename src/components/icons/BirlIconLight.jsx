@@ -1,6 +1,7 @@
-export function BirlIcon() {
+export function BirlIconLight({className=""}) {
   return (
     <svg
+    className={className}
       xmlns="http://www.w3.org/2000/svg"
       width="52"
       height="18"

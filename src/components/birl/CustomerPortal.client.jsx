@@ -2,12 +2,11 @@
 import birlLogo from '../../assets/birl/birl-logo.png';
 import arrowRight from '../../assets/birl/arrow-right.png';
 import styles from '../../assets/birl/trade-in-portal.css';
-import {BirlIcon} from '../icons/BirlIcon';
+import {BirlIconLight} from '../icons/BirlIconLight';
 import {FilterIcon} from '../icons/FilterIcon';
 import {Link} from '@shopify/hydrogen';
 import { SearchIcon } from '../icons/SearchIcon';
 import { PRODUCT_CARD_FRAGMENT } from '../../lib';
-import { AnnouncementBar } from './AnnouncementBar.jsx';
 import { OrderTable } from './tables/OrderTable';
 
 
@@ -48,7 +47,7 @@ export function CustomerPortal(customer) {
       <div className="w-[555px] h-[34px] px-[19px] py-2 mix-blend-multiply bg-green-600 rounded-2xl border border-white justify-center items-center gap-4 inline-flex">
         <div className="grow shrink basis-0 self-stretch relative"></div>
         <div className="justify-start items-center gap-1 flex">
-          <BirlIcon />
+          <BirlIconLight />
           <div>
             <span className="text-white text-sm font-medium  leading-[18px]">
               Have a DAWN item you’ve bought from elsewhere{' '}

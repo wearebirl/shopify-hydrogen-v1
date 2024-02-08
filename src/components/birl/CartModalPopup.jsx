@@ -1,6 +1,6 @@
 import birlLogo from "../../assets/birl/birl-logo.png";
 
-export function CartModalPopup({storeName   }) {
+export function CartModalPopup({storeName=undefined }) {
 
     if (storeName === undefined) {
         storeName = "Birl"
@@ -62,13 +62,13 @@ export function CartModalPopup({storeName   }) {
                         </div>
 
                         <div className="birl-credit-body-content">
-                            <p className={"uppercase"}>{storeNam}</p>
+                            <p className={"uppercase"}>{storeName}</p>
                             <span>No minimum spend required</span>
                         </div>
 
                     </div>
 
-                    <p class="trade-in-message">
+                    <p className="trade-in-message">
                         Trade-In your pre-owned DAWN items to get instant money off today!
                     </p>
 

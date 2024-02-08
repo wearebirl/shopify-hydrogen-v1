@@ -17,8 +17,7 @@ import {getHeroPlaceholder} from '~/lib/placeholders';
 import {FeaturedCollections, Hero} from '~/components';
 import {Layout, ProductSwimlane} from '~/components/index.server';
 import BirlBanner from "../../../../components/birl/BirlBanner";
-import {BirlStart, CustomerPortal} from "../../../../components/birl";
-import { CustomerPortalOrder } from '../../../../components/birl/CustomerPortalOrder.client';
+import {BirlStart, CustomerPortal, CustomerPortalOrder} from "../../../../components/birl";
 
 export default function BirlWelcome({response, params}) {
     response.cache(CacheNone());

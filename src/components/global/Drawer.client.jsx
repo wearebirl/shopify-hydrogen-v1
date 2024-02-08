@@ -1,4 +1,4 @@
-import {Fragment, useState} from 'react';
+import {Fragment, createContext, useState} from 'react';
 // @ts-expect-error @headlessui/react incompatibility with node16 resolution
 import {Dialog, Transition} from '@headlessui/react';
 
@@ -85,21 +85,38 @@ function Drawer({heading, open, onClose, openFrom = 'right', children}) {
 Drawer.Title = Dialog.Title;
 
 export {Drawer};
+export const DrawerContext = createContext();
 
-export function useDrawer(openDefault = false) {
-  const [isOpen, setIsOpen] = useState(openDefault);
+export function DrawerProvider({children, openDefault = false}) {
+  const [cartIsOpen, setCartIsOpen] = useState(openDefault);
+  const [menuIsOpen, setMenuIsOpen] = useState(openDefault);
 
-  function openDrawer() {
-    setIsOpen(true);
+  function openCartDrawer() {
+    setCartIsOpen(true);
+  }
+  function closeCartDrawer() {
+    setCartIsOpen(false);
   }
 
-  function closeDrawer() {
-    setIsOpen(false);
+  function openMenuDrawer() {
+    setMenuIsOpen(true);
   }
 
-  return {
-    isOpen,
-    openDrawer,
-    closeDrawer,
+  function closeMenuDrawer() {
+    setMenuIsOpen(false);
+  }
+  // The value provided to the context consumers
+  const value = {
+    cartIsOpen,
+    menuIsOpen,
+    openCartDrawer,
+    closeCartDrawer,
+    openMenuDrawer,
+    closeMenuDrawer
   };
+
+
+  return (
+    <DrawerContext.Provider value={value}>{children}</DrawerContext.Provider>
+  );
 }

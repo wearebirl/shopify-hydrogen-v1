@@ -10,6 +10,7 @@ import {
 } from '@shopify/hydrogen';
 
 import {Heading, Text, Button, ProductOptions} from '~/components';
+import { ProductCTA } from '../birl';
 
 export function ProductForm() {
   const {pathname, search} = useUrl();
@@ -72,6 +73,7 @@ export function ProductForm() {
 
   return (
     <form className="grid gap-10">
+
       {
         <div className="grid gap-4">
           {options.map(({name, values}) => {
@@ -137,6 +139,7 @@ export function ProductForm() {
           </Button>
         </AddToCartButton>
         {!isOutOfStock && <ShopPayButton variantIds={[selectedVariant.id]} />}
+        <ProductCTA />
       </div>
     </form>
   );

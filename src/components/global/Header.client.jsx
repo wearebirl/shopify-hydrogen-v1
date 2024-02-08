@@ -12,7 +12,8 @@ import {
 
 import {CartDrawer} from './CartDrawer.client';
 import {MenuDrawer} from './MenuDrawer.client';
-import {useDrawer} from './Drawer.client';
+import { useContext } from 'react';
+import { DrawerContext } from './Drawer.client';
 
 /**
  * A client component that specifies the content of the header on the website
@@ -24,36 +25,33 @@ export function Header({title, menu}) {
   const countryCode = localeMatch ? localeMatch[1] : undefined;
 
   const isHome = pathname === `/${countryCode ? countryCode + '/' : ''}`;
+  const  {cartIsOpen, menuIsOpen, openCartDrawer, openMenuDrawer, closeCartDrawer, closeMenuDrawer} = useContext(DrawerContext);
+// console.log("Context : ", brokenValues)
+  // const cartIsOpen = true;
+  // const menuIsOpen = false;
+  // const openCartDrawer = () => {};
+  // const closeCartDrawer = () => {};
+  // const openMenuDrawer = () => {};
+  // const closeMenuDrawer = () => {};
 
-  const {
-    isOpen: isCartOpen,
-    openDrawer: openCart,
-    closeDrawer: closeCart,
-  } = useDrawer();
-
-  const {
-    isOpen: isMenuOpen,
-    openDrawer: openMenu,
-    closeDrawer: closeMenu,
-  } = useDrawer();
 
   return (
     <>
-      <CartDrawer isOpen={isCartOpen} onClose={closeCart} />
-      <MenuDrawer isOpen={isMenuOpen} onClose={closeMenu} menu={menu} />
+      <CartDrawer isOpen={cartIsOpen} onClose={closeCartDrawer} />
+      <MenuDrawer isOpen={menuIsOpen} onClose={closeMenuDrawer} menu={menu} />
       <DesktopHeader
         countryCode={countryCode}
         isHome={isHome}
         title={title}
         menu={menu}
-        openCart={openCart}
+        openCart={openCartDrawer}
       />
       <MobileHeader
         countryCode={countryCode}
         isHome={isHome}
         title={title}
-        openCart={openCart}
-        openMenu={openMenu}
+        openCart={openCartDrawer}
+        openMenu={openMenuDrawer}
       />
     </>
   );

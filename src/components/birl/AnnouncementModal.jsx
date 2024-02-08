@@ -1,6 +1,5 @@
 import React, {useState, FC, ReactNode} from 'react';
 import FAQAccordion from './faqAccordion/FAQAccordion.client';
-import {BirlIcon} from '../icons/BirlIcon';
 import Carousel from './Carousel.client';
 import free_return from '../../assets/birl/free_to_return.png';
 import instant_credit from '../../assets/birl/instant_credit.png';
@@ -212,9 +211,15 @@ const AnnouncementModal = ({onClose}) => {
           {/* Center */}
 
           <div className={`flex flex-col md:flex-row justify-between`}>
-            <Carousel slides={sampleSlides} />
+          <div className="w-full md:w-1/2 p-4">
 
+
+            <Carousel slides={sampleSlides} />
+          </div>
+
+          <div className="w-full md:w-1/2 p-4">
             <FAQAccordion items={accordionSampleData} />
+          </div>
           </div>
         </div>
       </div>
