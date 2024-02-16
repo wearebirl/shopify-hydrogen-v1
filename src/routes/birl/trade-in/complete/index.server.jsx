@@ -107,7 +107,7 @@ function AuthenticatedAccount({
                 <Seo type="noindex" data={{title: 'Birl - Completed trade-in'}} />
             </Suspense>
             <BirlBanner></BirlBanner>
-            <BirlHeading headingText={"You did good!"}></BirlHeading>
+            <BirlHeading headingText={"You Did Something Good"}></BirlHeading>
             <Completed></Completed>
 
 

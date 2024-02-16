@@ -34,13 +34,12 @@ export function ContactDetails(customer, address){
         } else {
             e.value = false
         }
-        console.log({[e.target.id]: e.target.value})
         setInputs((prev) => ({
             ...prev,
-            [e.target.id]: e.target.value,
+            [e.target.id]: e.target.type == "checkbox" ? e.target.checked : e.target.value,
         }));
 
-        validateForm();
+        // validateForm();
     };
 
 
@@ -160,7 +159,29 @@ export function ContactDetails(customer, address){
 
     //TODO: Add validation for email, phone number, postcode, and terms and conditions
     useEffect(() => {
-        
+        let { fullName, email, address, city, postcode, county, phoneNumber, agreeSend, agreeTerms } = inputs;
+    
+        // Assuming the emailRegex is defined correctly
+        const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    
+        const isEmailValid = emailRegex?.test(email);
+        const isFullNameValid = fullName?.includes(" ") && fullName?.trim().split(" ").length > 1;
+        const isAddressValid = address?.length > 1;
+        const isCityValid = city?.length > 1;
+        const isPostcodeValid = postcode?.length > 1;
+        const isCountyValid = county?.length > 1;
+        const isPhoneNumberValid = phoneNumber?.length === 10;
+        const isAgreeSendValid = agreeSend === true;
+        const isAgreeTermsValid = agreeTerms === true;
+    
+        if (isFullNameValid && isEmailValid && isAddressValid && isCityValid && isPostcodeValid && isCountyValid && isPhoneNumberValid && isAgreeSendValid && isAgreeTermsValid) {
+            setIsRequirementsMet(true);
+            setValidate(true);
+        } else {
+            setIsRequirementsMet(false);
+            setValidate(false);
+        }
+    
     }, [inputs]);
 
     useEffect(() => {
@@ -175,6 +196,30 @@ export function ContactDetails(customer, address){
 
     }, [customer]);
 
+
+    useEffect(() => {
+
+        if(localStorage.getItem('birlOrder') != null){
+            let item = JSON.parse( localStorage.getItem('birlOrder'))
+
+            if(item.customer){
+                setInputs({
+                    ...inputs,
+                    fullName: item?.fullName,
+                    email: item?.email,
+                    address: item?.address,
+                    city: item?.city,
+                    postcode: item?.postcode,
+                    county: item?.county,
+                    phoneNumber: item?.phoneNumber,
+                    agreeSend: item?.agreeSend,
+                    agreeTerms: item?.agreeTerms,
+                })
+            }
+        }
+
+    }, [inputs]);
+
     return(
 
         <div className="max-w-[1280px] w-full mx-auto px-[20px]">
@@ -185,7 +230,7 @@ export function ContactDetails(customer, address){
                             <label htmlFor="fullName" className="block text-sm font-medium text-gray-700">
                                 Full Name
                             </label>
-                            <input type="text" name="fullName" id="fullName" autoComplete="name" value={inputs.fullName} onChange={handleOnChange} className="w-1/2 mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" placeholder="Enter your full name"/>
+                            <input type="text" name="fullName" id="fullName" autoComplete="name" value={inputs?.fullName} onChange={handleOnChange} className="w-1/2 mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" placeholder="Enter your full name"/>
                         </div>
 
                         <div class="w-full relative">
@@ -196,7 +241,7 @@ export function ContactDetails(customer, address){
                                 <span className="flex items-center justify-center px-4 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 absolute top-[24px] w-[82px] h-[38px] text-sm">
                                     +44 (0)
                                 </span>
-                                <input type="text" name="phoneNumber" id="phoneNumber" autoComplete="phoneNumber" value={inputs.phoneNumber} onChange={handleOnChange} className="w-full indent-[85px] mt-1 focus:ring-indigo-500 focus:border-indigo-500 block shadow-sm sm:text-sm border-gray-300 rounded-md" placeholder="Enter your mobile number" />
+                                <input type="text" name="phoneNumber" id="phoneNumber" autoComplete="phoneNumber" value={inputs?.phoneNumber} onChange={handleOnChange} className="w-full indent-[85px] mt-1 focus:ring-indigo-500 focus:border-indigo-500 block shadow-sm sm:text-sm border-gray-300 rounded-md" placeholder="Enter your mobile number" />
                             </div>
                         </div>
 
@@ -208,7 +253,7 @@ export function ContactDetails(customer, address){
                             <label htmlFor="email" className="block text-sm font-medium text-gray-700">
                                 Email
                             </label>
-                            <input type="text" name="email" id="email" autoComplete="email" value={inputs.email} onChange={handleOnChange} className="w-full mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" placeholder="Enter your email"/>
+                            <input type="text" name="email" id="email" autoComplete="email" value={inputs?.email} onChange={handleOnChange} className="w-full mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" placeholder="Enter your email"/>
                         </div>
                     </div>
 
@@ -217,7 +262,7 @@ export function ContactDetails(customer, address){
                             <label htmlFor="address" className="block text-sm font-medium text-gray-700">
                                 Address
                             </label>
-                            <input type="text" name="address" id="address" autoComplete="address" value={inputs.address} onChange={handleOnChange} className="w-full mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" placeholder="Enter your address"/>
+                            <input type="text" name="address" id="address" autoComplete="address" value={inputs?.address} onChange={handleOnChange} className="w-full mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" placeholder="Enter your address"/>
                         </div>
 
                         <div className="w-full">
@@ -234,27 +279,27 @@ export function ContactDetails(customer, address){
                             <label htmlFor="postcode" className="block text-sm font-medium text-gray-700">
                                 Postcode
                             </label>
-                            <input type="text" name="postcode" id="postcode" autoComplete="postcode" value={inputs.postcode} onChange={handleOnChange} className="w-full mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" placeholder="Enter your postcode"/>
+                            <input type="text" name="postcode" id="postcode" autoComplete="postcode" value={inputs?.postcode} onChange={handleOnChange} className="w-full mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" placeholder="Enter your postcode"/>
                         </div>
 
                         <div className="w-full">
                             <label htmlFor="county" className="block text-sm font-medium text-gray-700">
                                 County
                             </label>
-                            <input type="text" name="county" id="county" autoComplete="county" value={inputs.county} onChange={handleOnChange} className="w-full mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" placeholder="Enter your county"/>
+                            <input type="text" name="county" id="county" autoComplete="county" value={inputs?.county} onChange={handleOnChange} className="w-full mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" placeholder="Enter your county"/>
                         </div>
                     </div>
 
                     <div className="mt-[20px]">
                         <div className="flex items-center">
-                            <input type="checkbox" name="agreeSend" id="agreeSend" value={inputs.agreeSend} onChange={handleOnChange} className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
+                            <input type="checkbox" name="agreeSend" id="agreeSend" value={inputs?.agreeSend} onChange={handleOnChange} className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
                             <label htmlFor="agreeSend" className="ml-2 block text-sm text-gray-900">
                                 I have read and accept the Terms & Conditions
                             </label>
                         </div>
 
                         <div className="flex items-center mt-[20px]">
-                            <input type="checkbox" name="agreeTerms" id="agreeTerms" value={inputs.agreeTerms} onChange={handleOnChange} className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
+                            <input type="checkbox" name="agreeTerms" id="agreeTerms" value={inputs?.agreeTerms} onChange={handleOnChange} className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
                             <label htmlFor="agreeTerms" className="ml-2 block text-sm text-gray-900">
                                 I agree that my item condition is correct & I will return my item within 7 working days.
                             </label>
@@ -263,11 +308,11 @@ export function ContactDetails(customer, address){
                     </div>
 
                     <div className="mt-[20px]">
-                    <button className={"float-left"} onClick={({response})=>nextStep({response})}>
-                        <div className={`px-10 h-10  py-2 ${isRequirementsMet ? "bg-black" : "bg-gray-400" }   rounded-lg shadow justify-center items-center gap-2 inline-flex`}>
-                            <div className="text-white text-base font-semibold font-Inter leading-normal">Confirm condition</div>
-                        </div>
-                    </button>
+                        <button className={"float-left"} onClick={({response})=>nextStep({response})}>
+                            <div className={`px-10 h-10  py-2 ${isRequirementsMet ? "bg-black" : "bg-gray-400" }   rounded-lg shadow justify-center items-center gap-2 inline-flex`}>
+                                <div className="text-white text-base font-semibold font-Inter leading-normal">Confirm condition</div>
+                            </div>
+                        </button>
                     </div>
 
                 </div>

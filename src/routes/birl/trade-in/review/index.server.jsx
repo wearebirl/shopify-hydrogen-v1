@@ -112,7 +112,7 @@ function AuthenticatedAccount({
             <BirlBanner></BirlBanner>
             <BirlHeading headingText={"Review & Accept"}></BirlHeading>
             <TradeInProgressBar currentStep={5}></TradeInProgressBar>
-            <ReviewAccept></ReviewAccept>
+            <ReviewAccept customer={customer}></ReviewAccept>
 
 
 

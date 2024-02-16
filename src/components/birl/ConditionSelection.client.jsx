@@ -47,6 +47,8 @@ export function ConditionSelection({item, category, price}){
             
             return window.location.replace(`/birl/trade-in/value/${item.ProductId}`)
 
+        }else{
+            console.log(`not selected`)
         }
     }
 
